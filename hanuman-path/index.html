@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="th">
 <head>
-<meta charset="utf-8"><meta name="kg-build" content="d4709cd9ae">
+<meta charset="utf-8"><meta name="kg-build" content="19a3439666">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07132d">
 <title>หนุมานพิชิตเส้นทาง 3D · สื่อฉายหน้าชั้น ป.4 | KruKan.in.th</title>
@@ -7547,12 +7547,18 @@ void main() {
     d.style.cssText = "position:absolute;left:12px;right:12px;top:40%;padding:10px 14px;border-radius:12px;background:#2a1470e6;border:2px solid #ffd25e;color:#fff6e6;font:700 14px Kanit,Tahoma,sans-serif;text-align:center;z-index:5";
     p.appendChild(d);
   }
-  function hg(i) {
+  function hg(i, o) {
     let t;
     try { t = new Ha({ canvas: i, antialias: !HX_MOBILE, alpha: !1, powerPreference: HX_MOBILE ? "default" : "high-performance" }); }
     catch (err) { hxNote(i, "อุปกรณ์นี้เปิดกราฟิก 3D ไม่ได้: " + (err && err.message || err)); throw err; }
-    i.addEventListener("webglcontextlost", (ev) => { ev.preventDefault(); hxNote(i, "กราฟิก 3D หยุดทำงานชั่วคราว (หน่วยความจำไม่พอ) ลองโหลดหน้าใหม่"); });
-    i.addEventListener("webglcontextrestored", () => { const n = i.parentElement && i.parentElement.querySelector(".hx-note"); n && n.remove(); });
+    // ปล่อยบริบทเองตอนผืนผ้าใบถูกซ่อน (glRelease) ไม่ต้องขึ้นข้อความ · ถ้าเบราว์เซอร์ทิ้งเองให้บอก แล้วรอให้เบราว์เซอร์คืนให้ (preventDefault)
+    i.addEventListener("webglcontextlost", (ev) => {
+      ev.preventDefault();
+      if (o && o.glDeliberate) { o.glDeliberate = false; return; }
+      if (o) { o.glOff = true; o.glRestoring = true; o.glRestoreAt = performance.now(); }
+      hxNote(i, "กราฟิก 3D หยุดทำงานชั่วคราว (หน่วยความจำไม่พอ) ลองโหลดหน้าใหม่");
+    });
+    i.addEventListener("webglcontextrestored", () => { if (o) { o.glOff = false; o.glRestoring = false; } const n = i.parentElement && i.parentElement.querySelector(".hx-note"); n && n.remove(); });
     return (
       t.setPixelRatio(1),
       (t.shadowMap.enabled = !0),
@@ -7690,7 +7696,9 @@ void main() {
           (this.scene = new hs()),
           (this.clouds = hxSky(this.scene, e)),
           (this.camera = new Ce(38, 1, 0.1, 100)),
-          (this.renderer = hg(t)),
+          (this.renderer = null),   // สร้างบริบท WebGL ตอนผืนผ้าใบถูกแสดงครั้งแรก (glReady) ไม่ใช่ตอนเริ่ม: เว็บมี 10 ผืนผ้าใบ แต่ Chrome บนมือถือเปิดพร้อมกันได้ราว 8 เกินแล้วทิ้งอันแรกสุด (หน้าแรกกลายเป็นกรอบขาว)
+          (this.glOff = false),
+          (this.glIdle = 0),
           (this.root = new ae()),
           this.scene.add(this.root),
           ug(this.scene),
@@ -7698,18 +7706,22 @@ void main() {
           (this.drag = !1),
           (this.lastX = 0),
           (this.zoom = 1),
-          t.addEventListener("pointerdown", (n) => {
-            ((this.drag = !0), (this.lastX = n.clientX), t.setPointerCapture?.(n.pointerId));
-          }),
-          t.addEventListener("pointermove", (n) => {
-            this.drag && ((this.root.rotation.y += (n.clientX - this.lastX) * 0.008), (this.lastX = n.clientX));
-          }),
-          t.addEventListener("pointerup", () => (this.drag = !1)),
+          this.bindPointer(t),
           (this.resizeObserver = new ResizeObserver(() => this.resize())),
           this.resizeObserver.observe(t.parentElement),
           Rl.push(this));
       }
+      bindPointer(t) {
+        t.addEventListener("pointerdown", (n) => {
+          ((this.drag = !0), (this.lastX = n.clientX), t.setPointerCapture?.(n.pointerId));
+        });
+        t.addEventListener("pointermove", (n) => {
+          this.drag && ((this.root.rotation.y += (n.clientX - this.lastX) * 0.008), (this.lastX = n.clientX));
+        });
+        t.addEventListener("pointerup", () => (this.drag = !1));
+      }
       resize() {
+        if (!this.renderer || this.glOff) return;
         let t = Math.max(1, this.canvas.clientWidth),
           e = Math.max(1, this.canvas.clientHeight);
         // ความละเอียดตามขนาดที่เห็นจริงบนจอ (เวทีถูกย่อด้วย transform บนจอเล็ก จึงไม่ต้องวาดเต็ม 1920 หน่วย) มือถือไม่เกิน 1.25 เท่า
@@ -7732,8 +7744,66 @@ void main() {
       setZoom(z) {
         ((this.zoom = Math.max(0.55, Math.min(2.6, z))), (this.camera.zoom = this.zoom), this.camera.updateProjectionMatrix());
       }
+      // บริบท WebGL ใช้ได้พร้อมกันไม่กี่ตัว: เก็บไว้เฉพาะผืนผ้าใบที่แสดงอยู่ ตัวที่ซ่อนนานปล่อยคืน (loseContext) แล้วขอคืนมาใหม่ตอนแสดง (restoreContext) ฉากทั้งหมดยังอยู่ครบ
+      glRelease() {
+        const r = this.renderer;
+        if (!r || this.glOff) return;
+        const gl = r.getContext(), ext = gl && gl.getExtension("WEBGL_lose_context");
+        if (!ext || gl.isContextLost()) return;
+        this.glOff = true;
+        this.glDeliberate = true;
+        this.glExt = ext;   // เก็บไว้ใช้ restoreContext (บริบทที่หลุดแล้ว getExtension คืน null)
+        ext.loseContext();
+      }
+      glMakeRoom() {
+        const live = Rl.filter((s) => s !== this && s.renderer && !s.glOff);
+        if (live.length >= 2) live.forEach((s) => s.visible() || s.glRelease());
+      }
+      // ถ้าขอบริบทคืนไม่สำเร็จใน 2.5 วินาที (บางเบราว์เซอร์) ให้เปลี่ยนผืนผ้าใบเป็นอันใหม่แล้วสร้างบริบทใหม่ ฉากเดิมไม่เสีย
+      glRecreate() {
+        try { this.renderer && this.renderer.dispose(); } catch (err) {}
+        const old = this.canvas, nc = old.cloneNode(false), p = old.parentElement;
+        const note = p && p.querySelector(".hx-note");
+        note && note.remove();
+        old.replaceWith(nc);
+        this.canvas = nc;
+        this.bindPointer(nc);
+        this.renderer = null;
+        this.glOff = false;
+        this.glRestoring = false;
+        this.glDeliberate = false;
+        this.glExt = null;
+      }
+      glReady() {
+        if (this.glFail) return false;
+        if (!this.renderer) {
+          this.glMakeRoom();
+          try { this.renderer = hg(this.canvas, this); } catch (err) { this.glFail = true; }
+          return !!this.renderer;
+        }
+        if (!this.glOff) return true;
+        if (this.glRestoring) {
+          if (performance.now() - this.glRestoreAt > 2500) this.glRecreate();
+          return false;
+        }
+        const gl = this.renderer.getContext(), ext = this.glExt;
+        if (!gl.isContextLost()) { this.glOff = false; return true; }
+        this.glMakeRoom();
+        this.glRestoring = true;
+        this.glRestoreAt = performance.now();
+        ext ? ext.restoreContext() : this.glRecreate();
+        return false;
+      }
       render(t, e) {
-        if (!this.visible()) { if (this.canvas.width > 2) this.renderer.setSize(1, 1, !1); return; }   // ผืนผ้าใบที่ไม่ได้แสดงย่อเหลือ 1 พิกเซล คืนหน่วยความจำ GPU
+        if (!this.visible()) {
+          if (this.renderer && !this.glOff) {
+            if (this.canvas.width > 2) this.renderer.setSize(1, 1, !1);   // ผืนผ้าใบที่ไม่ได้แสดงย่อเหลือ 1 พิกเซล คืนหน่วยความจำ GPU
+            if (++this.glIdle > 45) this.glRelease();
+          }
+          return;
+        }
+        this.glIdle = 0;
+        if (!this.glReady()) return;
         (this.resize(), (this.particles.rotation.y = t * 0.02), (this.clouds.rotation.y = t * 0.004), this.renderer.render(this.scene, this.camera));
       }
     },
