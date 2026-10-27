@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="th">
 <head>
-<meta charset="utf-8"><meta name="kg-build" content="3007243208">
+<meta charset="utf-8"><meta name="kg-build" content="20626c8dbd">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07132d">
 <title>หนุมานพิชิตเส้นทาง 3D · สื่อฉายหน้าชั้น ป.4 | KruKan.in.th</title>
@@ -7539,10 +7539,22 @@ void main() {
     return i;
   }
 
+  // มือถือ/แท็บเล็ต: ประหยัดหน่วยความจำ GPU (เว็บมี 10 ผืนผ้าใบ 3D) ไม่งั้น Chrome บน Android ทิ้งผืนผ้าใบเป็นกรอบขาว (รูปแตก) · ตรวจจากหน้าจอสัมผัส+ความกว้าง
+  const HX_MOBILE = (matchMedia && matchMedia("(pointer:coarse)").matches) || /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent);
+  function hxNote(canvas, msg) {
+    const p = canvas.parentElement; if (!p || p.querySelector(".hx-note")) return;
+    const d = document.createElement("div"); d.className = "hx-note"; d.textContent = msg;
+    d.style.cssText = "position:absolute;left:12px;right:12px;top:40%;padding:10px 14px;border-radius:12px;background:#2a1470e6;border:2px solid #ffd25e;color:#fff6e6;font:700 14px Kanit,Tahoma,sans-serif;text-align:center;z-index:5";
+    p.appendChild(d);
+  }
   function hg(i) {
-    let t = new Ha({ canvas: i, antialias: !0, alpha: !1, powerPreference: "high-performance" });
+    let t;
+    try { t = new Ha({ canvas: i, antialias: !HX_MOBILE, alpha: !1, powerPreference: HX_MOBILE ? "default" : "high-performance" }); }
+    catch (err) { hxNote(i, "อุปกรณ์นี้เปิดกราฟิก 3D ไม่ได้: " + (err && err.message || err)); throw err; }
+    i.addEventListener("webglcontextlost", (ev) => { ev.preventDefault(); hxNote(i, "กราฟิก 3D หยุดทำงานชั่วคราว (หน่วยความจำไม่พอ) ลองโหลดหน้าใหม่"); });
+    i.addEventListener("webglcontextrestored", () => { const n = i.parentElement && i.parentElement.querySelector(".hx-note"); n && n.remove(); });
     return (
-      t.setPixelRatio(Math.min(devicePixelRatio || 1, 1.65)),
+      t.setPixelRatio(1),
       (t.shadowMap.enabled = !0),
       (t.shadowMap.type = Jr),
       (t.outputColorSpace = Ue),
@@ -7604,7 +7616,7 @@ void main() {
     const t = new Es(0xfff1d6, 2.7);
     t.position.set(7, 12, 6);
     t.castShadow = true;
-    t.shadow.mapSize.set(2048, 2048);
+    t.shadow.mapSize.set(HX_MOBILE ? 1024 : 2048, HX_MOBILE ? 1024 : 2048);
     t.shadow.camera.left = -11;
     t.shadow.camera.right = 11;
     t.shadow.camera.top = 11;
@@ -7700,6 +7712,9 @@ void main() {
       resize() {
         let t = Math.max(1, this.canvas.clientWidth),
           e = Math.max(1, this.canvas.clientHeight);
+        // ความละเอียดตามขนาดที่เห็นจริงบนจอ (เวทีถูกย่อด้วย transform บนจอเล็ก จึงไม่ต้องวาดเต็ม 1920 หน่วย) มือถือไม่เกิน 1.25 เท่า
+        const bw = this.canvas.getBoundingClientRect().width, sc = bw > 0 ? bw / t : 1, pr = Math.max(0.5, Math.min(HX_MOBILE ? 1.25 : 1.65, (devicePixelRatio || 1) * sc));
+        if (Math.abs(pr - this.renderer.getPixelRatio()) > 0.01) this.renderer.setPixelRatio(pr);
         (this.canvas.width !== Math.floor(t * this.renderer.getPixelRatio()) ||
           this.canvas.height !== Math.floor(e * this.renderer.getPixelRatio())) &&
           (this.renderer.setSize(t, e, !1), (this.camera.aspect = t / e), this.camera.updateProjectionMatrix());
@@ -7718,7 +7733,8 @@ void main() {
         ((this.zoom = Math.max(0.55, Math.min(2.6, z))), (this.camera.zoom = this.zoom), this.camera.updateProjectionMatrix());
       }
       render(t, e) {
-        this.visible() && (this.resize(), (this.particles.rotation.y = t * 0.02), (this.clouds.rotation.y = t * 0.004), this.renderer.render(this.scene, this.camera));
+        if (!this.visible()) { if (this.canvas.width > 2) this.renderer.setSize(1, 1, !1); return; }   // ผืนผ้าใบที่ไม่ได้แสดงย่อเหลือ 1 พิกเซล คืนหน่วยความจำ GPU
+        (this.resize(), (this.particles.rotation.y = t * 0.02), (this.clouds.rotation.y = t * 0.004), this.renderer.render(this.scene, this.camera));
       }
     },
     Ml = class extends vi {
