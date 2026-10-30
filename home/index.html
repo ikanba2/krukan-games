@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="lite-build" content="be4022228a">
+<meta name="lite-build" content="37c38dfed9">
 <meta name="theme-color" content="#f3f5fb">
 <meta name="description" content="Krukan Online พื้นที่การเรียนรู้ดิจิทัล บทเรียน กิจกรรม การประเมิน และเครื่องมือสำหรับผู้เรียน">
 <title>Krukan Online | DATA CORE</title>
@@ -1516,18 +1516,9 @@ html.boot-on .boot.has-bg{justify-content:flex-start;padding-top:max(26px,env(sa
   .pk b{font-size:15px;text-shadow:1px 1px 0 #0e1530}
 }
 
-/* ปุ่มเล่นเพลงประจำเว็บ (TECHNO RADIO) ใต้ PRESS START · 30 ต.ค. 2569 */
-.cta .b3d.radio{--c:var(--cyan);--fg:var(--ink);grid-column:1/-1;transform:rotate(-.6deg);padding-right:16px}
-.cta .b3d.radio .hp-t{display:block}
-.cta .b3d.radio .eqm{margin-left:auto;display:inline-flex;align-items:flex-end;gap:3px;height:22px}
-.cta .b3d.radio .eqm i{width:4px;height:6px;background:var(--ink);transform-origin:bottom;animation:kkrEq 1s ease-in-out infinite paused}
-.cta .b3d.radio .eqm i:nth-child(2){animation-delay:-.25s}.cta .b3d.radio .eqm i:nth-child(3){animation-delay:-.5s}.cta .b3d.radio .eqm i:nth-child(4){animation-delay:-.75s}
-.cta .b3d.radio.on{--c:var(--yellow)}
-.cta .b3d.radio.on .eqm i{animation-play-state:running}
-@keyframes kkrEq{0%,100%{height:6px}50%{height:22px}}
 
 /* mobile-safe-bottom: บนมือถือ (ฝังใน Sites) แถบปุ่มแอนดรอยด์/ปุ่ม ⓘ ของ Sites ทับมุมล่าง › ยกวิดเจ็ตลอยขึ้น 30 ต.ค. 2569 */
-@media(max-width:700px){.guide{bottom:calc(64px + env(safe-area-inset-bottom,0px))}.fab{bottom:calc(70px + env(safe-area-inset-bottom,0px))}#kkr{bottom:calc(64px + env(safe-area-inset-bottom,0px))}}
+@media(max-width:700px){.guide{bottom:calc(64px + env(safe-area-inset-bottom,0px))}.fab{bottom:calc(70px + env(safe-area-inset-bottom,0px))}}
 
 
 </style>
@@ -1562,7 +1553,53 @@ html.boot-on .boot.has-bg{justify-content:flex-start;padding-top:max(26px,env(sa
       <div class="cta">
         <button class="b3d big" type="button" data-go="learning"><span class="k" data-ic="play"></span><span><small>PRESS START</small>เริ่มเรียนรู้</span></button>
         <button class="b3d big gold" type="button" data-go="transform"><span class="k">⚡</span><span><small>LEARNING TRANSFORM</small>แปลงร่างการเรียนรู้</span></button>
-        <button class="b3d big radio" type="button" id="kk-hero-play" aria-label="เล่นเพลงประจำเว็บ"><span class="k">▶</span><span><small>TECHNO RADIO · ไซเบอร์ไรเดอร์เทคโน</small><span class="hp-t">ฟังเพลงประจำเว็บ</span></span><span class="eqm" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+        <!-- KK-RADIO: เครื่องเล่นเพลงประจำเว็บแบบกระชับ อยู่ในส่วนหัวใต้ PRESS START / LEARNING TRANSFORM — เพลงเดียว 'ไซเบอร์ไรเดอร์เทคโน' (ไฟล์ของครู ฝากที่ GitHub Pages techno-saga/music/menu.mp3) · จำระดับเสียงใน localStorage · 30 ต.ค. 2569 -->
+<style>
+#kkr{grid-column:1/-1;position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;min-height:64px;padding:8px 12px 8px 8px;background:var(--paper);color:var(--ink);border:4px solid var(--ink);border-radius:6px;box-shadow:6px 6px 0 var(--ink);transform:rotate(-.6deg);font-family:var(--body);--k:var(--pink);--k2:var(--cyan);--y:var(--yellow)}
+#kkr *{box-sizing:border-box}
+#kkr::before{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 60%,rgba(31,224,201,.14));pointer-events:none;border-radius:2px}
+#kkr .play{position:relative;display:grid;place-items:center;width:48px;height:48px;padding:0;border:3px solid var(--ink);border-radius:50%;background:var(--k);color:#fff;font-size:18px;font-weight:700;line-height:1;cursor:pointer;box-shadow:3px 3px 0 var(--ink);transition:transform .1s,box-shadow .1s}
+#kkr .play:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+#kkr.on .play{background:var(--y);color:var(--ink)}
+#kkr.on .play::before{content:'';position:absolute;inset:-9px;border-radius:50%;border:3px solid var(--k2);animation:kkrPulse 1.2s ease-out infinite}
+@keyframes kkrPulse{0%{transform:scale(.8);opacity:1}100%{transform:scale(1.25);opacity:0}}
+#kkr .meta{min-width:0;position:relative}
+#kkr .meta small{display:flex;align-items:center;gap:6px;font-family:var(--display);font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted,#3f4a66)}
+#kkr .eq{display:inline-flex;align-items:flex-end;gap:2px;height:12px}
+#kkr .eq i{width:3px;height:3px;background:var(--k2);transform-origin:bottom;animation:kkrEq 1s ease-in-out infinite paused}
+#kkr.on .eq i{animation-play-state:running}
+#kkr .eq i:nth-child(2){animation-delay:-.2s;background:var(--y)}#kkr .eq i:nth-child(3){animation-delay:-.4s;background:var(--k)}#kkr .eq i:nth-child(4){animation-delay:-.6s}
+@keyframes kkrEq{0%,100%{height:3px}50%{height:12px}}
+#kkr .ttl{display:block;font-family:var(--display);font-weight:700;font-size:17px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#kkr .bar{margin-top:5px;height:8px;border:2px solid var(--ink);background:#fff;position:relative;cursor:pointer}
+#kkr .bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--k),var(--y),var(--k2))}
+#kkr .tm{margin-left:auto;font-size:10.5px;font-variant-numeric:tabular-nums;letter-spacing:0;color:var(--muted,#3f4a66)}
+#kkr .vol{width:72px;accent-color:var(--k)}
+@media(max-width:560px){#kkr .vol{display:none}#kkr{grid-template-columns:auto 1fr}#kkr .ttl{font-size:15px}}
+</style>
+<div id="kkr" aria-label="เครื่องเล่นเพลงประจำเว็บ TECHNO RADIO">
+  <button type="button" class="play" title="เล่น/หยุด เพลงไซเบอร์ไรเดอร์เทคโน" aria-label="เล่นหรือหยุดเพลง">▶</button>
+  <div class="meta"><small>TECHNO RADIO · เพลงประจำเว็บ <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="tm"><span class="t0">0:00</span> / <span class="t1">–:––</span></span></small><span class="ttl">ไซเบอร์ไรเดอร์เทคโน</span><div class="bar" role="slider" aria-label="ตำแหน่งเพลง"><i></i></div></div>
+  <input class="vol" type="range" min="0" max="1" step="0.02" value="0.8" aria-label="ระดับเสียง" title="ระดับเสียง">
+</div>
+<script>
+(function(){
+  const SRC='https://ikanba2.github.io/krukan-games/techno-saga/music/menu.mp3';
+  const R=document.getElementById('kkr');if(!R)return;
+  const $=s=>R.querySelector(s),au=new Audio();au.preload='none';
+  let v=.8;try{v=+(JSON.parse(localStorage.getItem('kk_radio')||'{}').v);if(!(v>=0&&v<=1))v=.8}catch(e){}
+  const fmt=s=>isFinite(s)?Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'):'–:––';
+  function setOn(on){R.classList.toggle('on',on);$('.play').textContent=on?'❚❚':'▶'}
+  au.addEventListener('play',()=>setOn(true));au.addEventListener('pause',()=>setOn(false));
+  au.addEventListener('ended',()=>{au.currentTime=0;$('.bar i').style.width='0';$('.t0').textContent='0:00'});
+  au.addEventListener('timeupdate',()=>{if(au.duration){$('.bar i').style.width=(au.currentTime/au.duration*100)+'%';$('.t0').textContent=fmt(au.currentTime);$('.t1').textContent=fmt(au.duration)}});
+  au.addEventListener('loadedmetadata',()=>{$('.t1').textContent=fmt(au.duration)});
+  $('.play').addEventListener('click',()=>{if(au.paused){if(!au.src)au.src=SRC;au.play().catch(()=>{})}else au.pause()});
+  $('.bar').addEventListener('click',e=>{if(!au.duration)return;const r=e.currentTarget.getBoundingClientRect();au.currentTime=(e.clientX-r.left)/r.width*au.duration});
+  const vol=$('.vol');vol.value=v;au.volume=v;vol.addEventListener('input',()=>{au.volume=+vol.value;try{localStorage.setItem('kk_radio',JSON.stringify({v:+vol.value}))}catch(e){}});
+})();
+</script>
+
       </div>
       <div class="counters" id="counters"></div>
     </div>
@@ -1931,88 +1968,5 @@ function runBoot(){
 }
 runBoot();
 </script>
-<!-- KK-RADIO: เครื่องเล่นเพลงประจำเว็บ (เพลง 'ไซเบอร์ไรเดอร์เทคโน' ของครู + เพลงประกอบเกม Techno Saga จาก GitHub Pages) ลอยมุมซ้ายล่าง ย่อเป็นปุ่มกลมได้ จำเสียง/เพลง/สถานะใน localStorage -->
-<style>
-#kkr{position:fixed;left:14px;bottom:14px;z-index:88;font-family:var(--body,'Kanit',sans-serif);color:var(--ink,#0e1530);--k:var(--pink,#ff2e88);--k2:var(--cyan,#00cdb8);--y:var(--yellow,#ffd400)}
-#kkr *{box-sizing:border-box}
-#kkr .dock{width:min(340px,calc(100vw - 28px));background:var(--paper,#fff);border:3px solid var(--ink,#0e1530);box-shadow:8px 8px 0 var(--ink,#0e1530);clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px));position:relative;overflow:hidden}
-#kkr .dock::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 55%,rgba(255,46,136,.10) 56%,rgba(0,205,184,.12));pointer-events:none}
-#kkr .hd{display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--ink,#0e1530);color:#fff;font-family:var(--display,'Chakra Petch','Kanit',sans-serif);font-weight:700;font-size:12px;letter-spacing:.14em}
-#kkr .hd .eq{display:inline-flex;align-items:flex-end;gap:2px;height:14px;margin-left:auto}
-#kkr .hd .eq i{width:3px;height:4px;background:var(--k2);transform-origin:bottom;animation:kkrEq 1s ease-in-out infinite paused}
-#kkr.on .hd .eq i{animation-play-state:running}
-#kkr .hd .eq i:nth-child(2){animation-delay:-.2s;background:var(--y)}#kkr .hd .eq i:nth-child(3){animation-delay:-.4s;background:var(--k)}#kkr .hd .eq i:nth-child(4){animation-delay:-.6s}#kkr .hd .eq i:nth-child(5){animation-delay:-.8s;background:var(--y)}
-@keyframes kkrEq{0%,100%{height:4px}50%{height:14px}}
-#kkr .hd button{margin-left:6px;width:22px;height:22px;border:2px solid #fff;background:transparent;color:#fff;font-weight:700;line-height:1;cursor:pointer;font-size:14px}
-#kkr .bd{display:grid;grid-template-columns:64px 1fr;gap:10px;padding:10px 12px 8px}
-#kkr .disc{width:64px;height:64px;border-radius:50%;border:3px solid var(--ink,#0e1530);background:var(--k) center/cover;position:relative;box-shadow:3px 3px 0 var(--ink,#0e1530);animation:kkrSpin 6s linear infinite paused}
-#kkr.on .disc{animation-play-state:running}
-#kkr .disc::after{content:'';position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--paper,#fff);border:3px solid var(--ink,#0e1530)}
-@keyframes kkrSpin{to{transform:rotate(360deg)}}
-#kkr .meta{min-width:0}
-#kkr .ttl{font-family:var(--display,'Chakra Petch','Kanit',sans-serif);font-weight:700;font-size:15px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#kkr .sub{font-size:11px;color:var(--muted,#3f4a66);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
-#kkr .bar{margin-top:7px;height:10px;border:2px solid var(--ink,#0e1530);background:var(--paper2,#fff8dc);position:relative;cursor:pointer}
-#kkr .bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--k),var(--y),var(--k2))}
-#kkr .tm{display:flex;justify-content:space-between;font-size:10px;color:var(--muted,#3f4a66);margin-top:2px;font-variant-numeric:tabular-nums}
-#kkr .ct{display:flex;align-items:center;gap:6px;padding:0 12px 10px}
-#kkr .ct button{height:34px;min-width:34px;padding:0 10px;border:2px solid var(--ink,#0e1530);background:var(--paper,#fff);color:var(--ink,#0e1530);font-weight:700;cursor:pointer;box-shadow:3px 3px 0 var(--ink,#0e1530);font-size:14px;line-height:1}
-#kkr .ct button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink,#0e1530)}
-#kkr .ct .play{background:var(--k);color:#fff;min-width:62px;height:40px;font-size:18px;border-radius:6px;transform:skewX(-10deg)}
-#kkr .ct .play>span{display:inline-block;transform:skewX(10deg)}
-#kkr.on .ct .play{background:var(--y);color:var(--ink,#0e1530)}
-#kkr .ct .vol{flex:1;display:flex;align-items:center;gap:6px;font-size:12px}
-#kkr .ct input[type=range]{width:100%;accent-color:var(--k)}
-#kkr .list{display:none;max-height:190px;overflow:auto;border-top:3px solid var(--ink,#0e1530);background:var(--paper2,#fff8dc)}
-#kkr.open .list{display:block}
-#kkr .list button{display:flex;width:100%;gap:8px;align-items:center;padding:7px 12px;border:0;border-bottom:1px solid var(--dot,rgba(14,21,48,.16));background:transparent;color:var(--ink,#0e1530);font:inherit;font-size:13px;text-align:left;cursor:pointer}
-#kkr .list button.cur{background:var(--k);color:#fff}
-#kkr .list button b{font-family:var(--display,'Chakra Petch','Kanit',sans-serif);min-width:22px;opacity:.7}
-#kkr .list button small{margin-left:auto;opacity:.75;font-variant-numeric:tabular-nums}
-#kkr .mini{display:none;width:56px;height:56px;border:3px solid var(--ink,#0e1530);border-radius:50%;background:var(--k) center/cover;box-shadow:5px 5px 0 var(--ink,#0e1530);cursor:pointer;position:relative}
-#kkr .mini::after{content:'♪';position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:24px;font-weight:700;text-shadow:0 0 6px rgba(0,0,0,.6)}
-#kkr.on .mini::before{content:'';position:absolute;inset:-9px;border-radius:50%;border:3px solid var(--k2);animation:kkrPulse 1.2s ease-out infinite}
-@keyframes kkrPulse{0%{transform:scale(.8);opacity:1}100%{transform:scale(1.25);opacity:0}}
-#kkr.min .dock{display:none}#kkr.min .mini{display:block}
-@media (max-width:640px){#kkr{left:10px;bottom:calc(64px + env(safe-area-inset-bottom,0px))}#kkr .bd{grid-template-columns:52px 1fr}#kkr .disc{width:52px;height:52px}}
-</style>
-<div id="kkr" class="min" aria-label="เครื่องเล่นเพลงประจำเว็บ">
-  <button class="mini" type="button" title="เปิดเครื่องเล่นเพลง" aria-label="เปิดเครื่องเล่นเพลง"></button>
-  <div class="dock">
-    <div class="hd"><span>TECHNO RADIO</span><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><button type="button" class="tgl" title="รายการเพลง">≡</button><button type="button" class="mn" title="ย่อ">–</button></div>
-    <div class="bd"><div class="disc"></div><div class="meta"><div class="ttl">ไซเบอร์ไรเดอร์เทคโน</div><div class="sub">เพลงประจำเว็บ · KruKan</div><div class="bar" role="slider" aria-label="ตำแหน่งเพลง"><i></i></div><div class="tm"><span class="t0">0:00</span><span class="t1">–:––</span></div></div></div>
-    <div class="ct"><button type="button" class="prev" title="เพลงก่อนหน้า">‹‹</button><button type="button" class="play" title="เล่น/หยุด"><span>▶</span></button><button type="button" class="next" title="เพลงถัดไป">››</button><label class="vol"><span>🔊</span><input type="range" min="0" max="1" step="0.02" value="0.8" aria-label="ระดับเสียง"></label></div>
-    <div class="list" role="listbox"></div>
-  </div>
-</div>
-<script>
-(function(){
-  const BASE='https://ikanba2.github.io/krukan-games/techno-saga/music/';
-  const TR=[['menu.mp3','ไซเบอร์ไรเดอร์เทคโน','เพลงประจำเว็บ · KruKan'],['select.mp3','Sci-Fi Game','หน้าเลือกนักสู้ · Techno Saga'],['b1.mp3','Daredevil','เพลงสู้ ตอน 1 · Techno Saga'],['b2.mp3','Techno Fest Feel','เพลงสู้ ตอน 2 · Techno Saga'],['b6.mp3','Rock the Game','เพลงสู้ ตอน 6 · Techno Saga'],['b8.mp3','Epic Games','เพลงสู้ ตอน 8 · Techno Saga'],['boss2.mp3','Fight Back','เพลงบอส · Techno Saga'],['think.mp3','Digital Clouds','บทสนทนา · Techno Saga'],['breeze.mp3','A New Life','จบตอน · Techno Saga']];
-  const R=document.getElementById('kkr');if(!R)return;
-  const $=s=>R.querySelector(s),au=new Audio();au.preload='none';
-  let st={i:0,v:.8,min:true};try{st=Object.assign(st,JSON.parse(localStorage.getItem('kk_radio')||'{}'))}catch(e){}
-  const save=()=>{try{localStorage.setItem('kk_radio',JSON.stringify(st))}catch(e){}};
-  const fmt=s=>isFinite(s)?Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'):'–:––';
-  const list=$('.list');TR.forEach((t,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('role','option');b.innerHTML='<b>'+String(i+1).padStart(2,'0')+'</b><span>'+t[1]+'</span><small></small>';b.addEventListener('click',()=>{load(i);play()});list.appendChild(b)});
-  function load(i){st.i=(i+TR.length)%TR.length;const t=TR[st.i];au.src=BASE+t[0];$('.ttl').textContent=t[1];$('.sub').textContent=t[2];$('.t0').textContent='0:00';$('.t1').textContent='–:––';$('.bar i').style.width='0';[...list.children].forEach((b,k)=>b.classList.toggle('cur',k===st.i));save()}
-  function play(){au.play().catch(()=>{})}
-  function setOn(on){R.classList.toggle('on',on);$('.play span').textContent=on?'❚❚':'▶'}
-  au.addEventListener('play',()=>setOn(true));au.addEventListener('pause',()=>setOn(false));au.addEventListener('ended',()=>{load(st.i+1);play()});
-  au.addEventListener('timeupdate',()=>{if(au.duration){$('.bar i').style.width=(au.currentTime/au.duration*100)+'%';$('.t0').textContent=fmt(au.currentTime);$('.t1').textContent=fmt(au.duration)}});
-  au.addEventListener('loadedmetadata',()=>{$('.t1').textContent=fmt(au.duration);const b=list.children[st.i];if(b)b.querySelector('small').textContent=fmt(au.duration)});
-  $('.play').addEventListener('click',()=>{if(au.paused){if(!au.src)load(st.i);play()}else au.pause()});
-  $('.prev').addEventListener('click',()=>{load(st.i-1);play()});$('.next').addEventListener('click',()=>{load(st.i+1);play()});
-  $('.bar').addEventListener('click',e=>{if(!au.duration)return;const r=e.currentTarget.getBoundingClientRect();au.currentTime=(e.clientX-r.left)/r.width*au.duration});
-  const vol=$('.vol input');vol.value=st.v;au.volume=st.v;vol.addEventListener('input',()=>{au.volume=st.v=+vol.value;save()});
-  $('.tgl').addEventListener('click',()=>R.classList.toggle('open'));
-  const hp=document.getElementById('kk-hero-play');if(hp){const syncHp=()=>{hp.classList.toggle('on',!au.paused);hp.querySelector('.hp-t').textContent=au.paused?'ฟังเพลงประจำเว็บ':'กำลังเล่น · '+TR[st.i][1];hp.querySelector('.k').textContent=au.paused?'▶':'❚❚'};hp.addEventListener('click',()=>{if(au.paused){if(!au.src)load(st.i);play();st.min=false;R.classList.remove('min');save()}else au.pause()});au.addEventListener('play',syncHp);au.addEventListener('pause',syncHp);syncHp()}
-  $('.mn').addEventListener('click',()=>{st.min=true;R.classList.add('min');save()});
-  $('.mini').addEventListener('click',()=>{st.min=false;R.classList.remove('min');save();if(au.paused){if(!au.src)load(st.i);play()}});
-  R.classList.toggle('min',st.min!==false);load(st.i);
-  const art=BASE+'cover.webp';$('.disc').style.backgroundImage='url('+art+')';$('.mini').style.backgroundImage='url('+art+')';
-})();
-</script>
-
 </body>
 </html>
