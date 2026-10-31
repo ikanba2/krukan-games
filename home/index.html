@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="lite-build" content="18d4ece24f">
+<meta name="lite-build" content="dfe8535ee0">
 <meta name="theme-color" content="#f3f5fb">
 <meta name="description" content="Krukan Online พื้นที่การเรียนรู้ดิจิทัล บทเรียน กิจกรรม การประเมิน และเครื่องมือสำหรับผู้เรียน">
 <title>Krukan Online | DATA CORE</title>
@@ -1561,53 +1561,7 @@ html.boot-on .boot.has-bg{justify-content:flex-start;padding-top:max(26px,env(sa
       <div class="cta">
         <button class="b3d big" type="button" data-go="learning"><span class="k" data-ic="play"></span><span><small>PRESS START</small>เริ่มเรียนรู้</span></button>
         <button class="b3d big gold" type="button" data-go="transform"><span class="k">⚡</span><span><small>LEARNING TRANSFORM</small>แปลงร่างการเรียนรู้</span></button>
-        <!-- เครื่องเล่นเพลง TECHNO RADIO ถอดออกตามคำสั่งผู้ใช้ 31 ต.ค. 2569 (ไฟล์ radio.html ยังอยู่ ใส่กลับด้วย <!-- KK-RADIO: เครื่องเล่นเพลงประจำเว็บแบบกระชับ อยู่ในส่วนหัวใต้ PRESS START / LEARNING TRANSFORM — เพลงเดียว 'ไซเบอร์ไรเดอร์เทคโน' (ไฟล์ของครู ฝากที่ GitHub Pages techno-saga/music/menu.mp3) · จำระดับเสียงใน localStorage · 30 ต.ค. 2569 -->
-<style>
-#kkr{grid-column:1/-1;position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;min-height:64px;padding:8px 12px 8px 8px;background:var(--paper);color:var(--ink);border:4px solid var(--ink);border-radius:6px;box-shadow:6px 6px 0 var(--ink);transform:rotate(-.6deg);font-family:var(--body);--k:var(--pink);--k2:var(--cyan);--y:var(--yellow)}
-#kkr *{box-sizing:border-box}
-#kkr::before{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 60%,rgba(31,224,201,.14));pointer-events:none;border-radius:2px}
-#kkr .play{position:relative;display:grid;place-items:center;width:48px;height:48px;padding:0;border:3px solid var(--ink);border-radius:50%;background:var(--k);color:#fff;font-size:18px;font-weight:700;line-height:1;cursor:pointer;box-shadow:3px 3px 0 var(--ink);transition:transform .1s,box-shadow .1s}
-#kkr .play:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
-#kkr.on .play{background:var(--y);color:var(--ink)}
-#kkr.on .play::before{content:'';position:absolute;inset:-9px;border-radius:50%;border:3px solid var(--k2);animation:kkrPulse 1.2s ease-out infinite}
-@keyframes kkrPulse{0%{transform:scale(.8);opacity:1}100%{transform:scale(1.25);opacity:0}}
-#kkr .meta{min-width:0;position:relative}
-#kkr .meta small{display:flex;align-items:center;gap:6px;font-family:var(--display);font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted,#3f4a66)}
-#kkr .eq{display:inline-flex;align-items:flex-end;gap:2px;height:12px}
-#kkr .eq i{width:3px;height:3px;background:var(--k2);transform-origin:bottom;animation:kkrEq 1s ease-in-out infinite paused}
-#kkr.on .eq i{animation-play-state:running}
-#kkr .eq i:nth-child(2){animation-delay:-.2s;background:var(--y)}#kkr .eq i:nth-child(3){animation-delay:-.4s;background:var(--k)}#kkr .eq i:nth-child(4){animation-delay:-.6s}
-@keyframes kkrEq{0%,100%{height:3px}50%{height:12px}}
-#kkr .ttl{display:block;font-family:var(--display);font-weight:700;font-size:17px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#kkr .bar{margin-top:5px;height:8px;border:2px solid var(--ink);background:#fff;position:relative;cursor:pointer}
-#kkr .bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--k),var(--y),var(--k2))}
-#kkr .tm{margin-left:auto;font-size:10.5px;font-variant-numeric:tabular-nums;letter-spacing:0;color:var(--muted,#3f4a66)}
-#kkr .vol{width:72px;accent-color:var(--k)}
-@media(max-width:560px){#kkr .vol{display:none}#kkr{grid-template-columns:auto 1fr}#kkr .ttl{font-size:15px}}
-</style>
-<div id="kkr" aria-label="เครื่องเล่นเพลงประจำเว็บ TECHNO RADIO">
-  <button type="button" class="play" title="เล่น/หยุด เพลงไซเบอร์ไรเดอร์เทคโน" aria-label="เล่นหรือหยุดเพลง">▶</button>
-  <div class="meta"><small>TECHNO RADIO · เพลงประจำเว็บ <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="tm"><span class="t0">0:00</span> / <span class="t1">–:––</span></span></small><span class="ttl">ไซเบอร์ไรเดอร์เทคโน</span><div class="bar" role="slider" aria-label="ตำแหน่งเพลง"><i></i></div></div>
-  <input class="vol" type="range" min="0" max="1" step="0.02" value="0.8" aria-label="ระดับเสียง" title="ระดับเสียง">
-</div>
-<script>
-(function(){
-  const SRC='https://ikanba2.github.io/krukan-games/techno-saga/music/menu.mp3';
-  const R=document.getElementById('kkr');if(!R)return;
-  const $=s=>R.querySelector(s),au=new Audio();au.preload='none';
-  let v=.8;try{v=+(JSON.parse(localStorage.getItem('kk_radio')||'{}').v);if(!(v>=0&&v<=1))v=.8}catch(e){}
-  const fmt=s=>isFinite(s)?Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'):'–:––';
-  function setOn(on){R.classList.toggle('on',on);$('.play').textContent=on?'❚❚':'▶'}
-  au.addEventListener('play',()=>setOn(true));au.addEventListener('pause',()=>setOn(false));
-  au.addEventListener('ended',()=>{au.currentTime=0;$('.bar i').style.width='0';$('.t0').textContent='0:00'});
-  au.addEventListener('timeupdate',()=>{if(au.duration){$('.bar i').style.width=(au.currentTime/au.duration*100)+'%';$('.t0').textContent=fmt(au.currentTime);$('.t1').textContent=fmt(au.duration)}});
-  au.addEventListener('loadedmetadata',()=>{$('.t1').textContent=fmt(au.duration)});
-  $('.play').addEventListener('click',()=>{if(au.paused){if(!au.src)au.src=SRC;au.play().catch(()=>{})}else au.pause()});
-  $('.bar').addEventListener('click',e=>{if(!au.duration)return;const r=e.currentTarget.getBoundingClientRect();au.currentTime=(e.clientX-r.left)/r.width*au.duration});
-  const vol=$('.vol');vol.value=v;au.volume=v;vol.addEventListener('input',()=>{au.volume=+vol.value;try{localStorage.setItem('kk_radio',JSON.stringify({v:+vol.value}))}catch(e){}});
-})();
-</script>
-) -->
+        <!-- เครื่องเล่นเพลง TECHNO RADIO ถอดออกตามคำสั่งผู้ใช้ 31 ต.ค. 2569 (ไฟล์ radio.html ยังอยู่ ใส่กลับด้วย placeholder RADIO ตาม build-home-lite.py) -->
       </div>
       <div class="counters" id="counters"></div>
     </div>
