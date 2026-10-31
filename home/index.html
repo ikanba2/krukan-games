@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="lite-build" content="76b802b1f0">
+<meta name="lite-build" content="df203e66f9">
 <meta name="theme-color" content="#f3f5fb">
 <meta name="description" content="Krukan Online พื้นที่การเรียนรู้ดิจิทัล บทเรียน กิจกรรม การประเมิน และเครื่องมือสำหรับผู้เรียน">
 <title>Krukan Online | DATA CORE</title>
@@ -1520,6 +1520,14 @@ html.boot-on .boot.has-bg{justify-content:flex-start;padding-top:max(26px,env(sa
 /* mobile-safe-bottom: บนมือถือ (ฝังใน Sites) แถบปุ่มแอนดรอยด์/ปุ่ม ⓘ ของ Sites ทับมุมล่าง › ยกวิดเจ็ตลอยขึ้น 30 ต.ค. 2569 */
 @media(max-width:700px){.guide{bottom:calc(64px + env(safe-area-inset-bottom,0px))}.fab{bottom:calc(70px + env(safe-area-inset-bottom,0px))}}
 
+/* วิดีโอความรู้: การ์ดเล็กขนาดเท่ากันทุกใบ ไม่มีใบเด่น (ผู้ใช้ 31 ต.ค. 2569) */
+.cines{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;align-items:stretch}
+.cine h3{font-size:14px;line-height:1.35;min-height:2.7em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cine .pl i{width:42px;height:42px}
+.cine .pl i .ico{width:18px;height:18px}
+@media(max-width:1060px){.cines{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:640px){.cines{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.cine h3{font-size:13px}}
+
 
 </style>
 </head>
@@ -1858,7 +1866,7 @@ renderGames();
 
 let vAll=false;
 function renderVids(){const list=vAll?VIDEOS:VIDEOS.slice(0,5);
-  $('#cines').innerHTML=list.map((v,i)=>'<a class="card cine'+(i===0?' feat':'')+'" href="https://www.youtube.com/watch?v='+esc(v.id)+'" '+ext+' aria-label="เปิดวิดีโอ '+esc(v.title)+' บน YouTube"><span class="th"><img src="https://i.ytimg.com/vi/'+esc(v.id)+'/'+(i===0?'maxresdefault':'hqdefault')+'.jpg" alt="" width="480" height="270" loading="lazy" decoding="async"><span class="tp">'+esc(v.topic)+'</span><span class="pl"><i>'+IC.play+'</i></span></span><h3>'+esc(v.title)+'</h3></a>').join('');
+  $('#cines').innerHTML=list.map((v,i)=>'<a class="card cine" href="https://www.youtube.com/watch?v='+esc(v.id)+'" '+ext+' aria-label="เปิดวิดีโอ '+esc(v.title)+' บน YouTube"><span class="th"><img src="https://i.ytimg.com/vi/'+esc(v.id)+'/hqdefault.jpg" alt="" width="480" height="270" loading="lazy" decoding="async"><span class="tp">'+esc(v.topic)+'</span><span class="pl"><i>'+IC.play+'</i></span></span><h3>'+esc(v.title)+'</h3></a>').join('');
   const m=$('#vid-more');m.hidden=VIDEOS.length<=5;m.innerHTML=vAll?'แสดงน้อยลง '+IC.up:'ดูวิดีโอทั้งหมด '+VIDEOS.length+' เรื่อง '+IC.down;}
 $('#vid-more').onclick=()=>{vAll=!vAll;renderVids()};renderVids();
 
