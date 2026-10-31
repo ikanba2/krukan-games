@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="lite-build" content="6562a58d2e">
+<meta name="lite-build" content="18d4ece24f">
 <meta name="theme-color" content="#f3f5fb">
 <meta name="description" content="Krukan Online พื้นที่การเรียนรู้ดิจิทัล บทเรียน กิจกรรม การประเมิน และเครื่องมือสำหรับผู้เรียน">
 <title>Krukan Online | DATA CORE</title>
@@ -1561,7 +1561,7 @@ html.boot-on .boot.has-bg{justify-content:flex-start;padding-top:max(26px,env(sa
       <div class="cta">
         <button class="b3d big" type="button" data-go="learning"><span class="k" data-ic="play"></span><span><small>PRESS START</small>เริ่มเรียนรู้</span></button>
         <button class="b3d big gold" type="button" data-go="transform"><span class="k">⚡</span><span><small>LEARNING TRANSFORM</small>แปลงร่างการเรียนรู้</span></button>
-        <!-- KK-RADIO: เครื่องเล่นเพลงประจำเว็บแบบกระชับ อยู่ในส่วนหัวใต้ PRESS START / LEARNING TRANSFORM — เพลงเดียว 'ไซเบอร์ไรเดอร์เทคโน' (ไฟล์ของครู ฝากที่ GitHub Pages techno-saga/music/menu.mp3) · จำระดับเสียงใน localStorage · 30 ต.ค. 2569 -->
+        <!-- เครื่องเล่นเพลง TECHNO RADIO ถอดออกตามคำสั่งผู้ใช้ 31 ต.ค. 2569 (ไฟล์ radio.html ยังอยู่ ใส่กลับด้วย <!-- KK-RADIO: เครื่องเล่นเพลงประจำเว็บแบบกระชับ อยู่ในส่วนหัวใต้ PRESS START / LEARNING TRANSFORM — เพลงเดียว 'ไซเบอร์ไรเดอร์เทคโน' (ไฟล์ของครู ฝากที่ GitHub Pages techno-saga/music/menu.mp3) · จำระดับเสียงใน localStorage · 30 ต.ค. 2569 -->
 <style>
 #kkr{grid-column:1/-1;position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;min-height:64px;padding:8px 12px 8px 8px;background:var(--paper);color:var(--ink);border:4px solid var(--ink);border-radius:6px;box-shadow:6px 6px 0 var(--ink);transform:rotate(-.6deg);font-family:var(--body);--k:var(--pink);--k2:var(--cyan);--y:var(--yellow)}
 #kkr *{box-sizing:border-box}
@@ -1607,7 +1607,7 @@ html.boot-on .boot.has-bg{justify-content:flex-start;padding-top:max(26px,env(sa
   const vol=$('.vol');vol.value=v;au.volume=v;vol.addEventListener('input',()=>{au.volume=+vol.value;try{localStorage.setItem('kk_radio',JSON.stringify({v:+vol.value}))}catch(e){}});
 })();
 </script>
-
+) -->
       </div>
       <div class="counters" id="counters"></div>
     </div>
