@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="lite-build" content="b07121e712">
+<meta name="lite-build" content="c7f7f28c2f">
 <meta name="theme-color" content="#f3f5fb">
 <meta name="description" content="Krukan Online พื้นที่การเรียนรู้ดิจิทัล บทเรียน กิจกรรม การประเมิน และเครื่องมือสำหรับผู้เรียน">
 <title>Krukan Online | DATA CORE</title>
@@ -1529,12 +1529,13 @@ html.boot-on .boot.has-bg{justify-content:flex-start;padding-top:max(26px,env(sa
 @media(max-width:640px){.cines{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.cine h3{font-size:13px}}
 
 /* ===== v8 (1 พ.ย. 2569 ผู้ใช้: 'ปรับ Techno guide ให้เป็นอาการิ ให้มีการเคลื่อนไหว'): ตัวนำทางเป็นอาการิ — ชีตสไปรต์ 8 เฟรม 3 ชุดซ้อนกัน (idle / open / hello) สลับด้วย data-on ===== */
-.g-btn .g-spr{position:relative;z-index:1;display:block;flex:none;width:115px;height:138px;margin-bottom:16px;filter:drop-shadow(3px 3px 0 var(--ink));pointer-events:none;transition:transform .18s cubic-bezier(.3,1.6,.5,1)}
+.g-btn .g-spr{position:relative;z-index:1;display:block;flex:none;width:115px;height:138px;margin-bottom:16px;filter:drop-shadow(3px 3px 0 var(--ink));pointer-events:none;transform-origin:50% 100%;transition:transform .18s cubic-bezier(.3,1.6,.5,1)}
 .g-spr i{position:absolute;inset:0;background-repeat:no-repeat;background-size:800% 100%;background-position:0 0;opacity:0;transition:opacity .12s linear}   /* เฟรดสั้น ๆ ตอนสลับชีต ลดอาการกระตุกเมื่อท่าสองชีตไม่ตรงกันพอดี */
 .g-spr i[data-on]{opacity:1}
 .g-spr.still{background-repeat:no-repeat;background-size:contain;background-position:50% 100%;animation:float 3s ease-in-out infinite}
-.g-btn:hover .g-spr{transform:translateY(-3px)}
-.g-btn[aria-expanded=true] .g-spr{transform:none;animation:none}
+.g-btn:hover .g-spr{transform:translateY(-4px) scale(1.06)}
+.g-btn:active .g-spr{transform:scale(.95)}
+.g-btn[aria-expanded=true] .g-spr{transform:scale(1.05);animation:none}
 .g-bubble{bottom:156px}
 .g-dock{bottom:160px}
 @media(max-width:560px){.g-btn .g-spr{width:87px;height:104px;margin-bottom:12px}.g-bubble{bottom:120px}.g-dock{bottom:124px}}
@@ -1903,29 +1904,37 @@ else if(ASSETS.guide){gImg.classList.add('still');gImg.style.backgroundImage='ur
 else $('#guide').remove();
 $('#g-list').innerHTML=GUIDE.map((g,i)=>'<button type="button" data-go="'+g[0]+'" style="--c:'+g[3]+';--i:'+(GUIDE.length-1-i)+'"><span>'+g[1]+'</span>'+esc(g[2])+'</button>').join('');
 document.addEventListener('pointerdown',e=>{if(!gd.hidden&&!e.target.closest('#guide'))dock(false)});
-/* อาการิเคลื่อนไหวด้วยชีตสไปรต์ 8 เฟรม 3 ชุด (tools/home-lite/make_akari_guide.py): idle = ยืนนิ่งวนซ้ำ · open = พูดนำเมนูตอนเมนูเปิด · hello = โบกมือทักทายครั้งเดียวแล้วกลับ idle
-   ซ้อน <i> ไว้ทั้ง 3 ชุด สลับด้วย data-on (ไม่เปลี่ยน background-image จึงไม่กะพริบตอนถอดรหัสภาพ) ขยับเฟรมด้วย background-position เท่านั้น */
-const GA={idle:{fps:5,loop:true,n:8},open:{fps:7,loop:true,n:8},hello:{fps:9,loop:false,n:8}};   /* เฟรม 8 = ท่ายืนพัก ตรงกับ idle เฟรม 1 (ชีตแก้รอบ 2) จึงเล่นครบ 8 เฟรมแล้วต่อ idle ได้เนียน */let gSt='idle',gFr=0,gTm=0,gHelloAt=0;
-function gPaint(){const el=gImg.querySelector('[data-on]');if(el)el.style.backgroundPosition=(gFr*100/7)+'% 0'}
+/* อาการิเคลื่อนไหวด้วยชีตสไปรต์ 8 เฟรม 3 ชุด (tools/home-lite/make_akari_guide.py) · ผู้ใช้ 1 พ.ย. 2569: 'ยืนเฉย ๆ ให้หายใจขยับตัวพอ · พูดตอนที่พูด · ท่าชัดเจนตอนคลิกหรือชี้'
+   ท่า = ชีต + ลำดับเฟรม (เลขเฟรมเริ่ม 0):
+   idle  ยืนหายใจเบา ๆ วนซ้ำ ใช้เฉพาะเฟรมปากปิดของชีต idle + กะพริบตา 1 ครั้งต่อรอบ (ไม่โบกมือ ไม่ขยับปาก)
+   talk  พูด สลับเฟรมปากเปิด/ปิดของชีต idle เล่นเฉพาะตอนมีกล่องคำพูดโชว์อยู่
+   hello โบกมือกระโดดเล็กน้อย 1 รอบ (ชีต hello) ตอนคลิก/ชี้เมาส์เปิดเมนู และตอนทักทายครั้งแรก
+   pose  ยื่นมือเชิญชวนค้างไว้ปากปิด (ชีต open เฟรม 4) ตลอดที่เมนูเปิดอยู่
+   ซ้อน <i> ไว้ทั้ง 3 ชีต สลับด้วย data-on (ไม่เปลี่ยน background-image จึงไม่กะพริบตอนถอดรหัสภาพ) ขยับเฟรมด้วย background-position เท่านั้น */
+const ST={idle:{s:'idle',fps:5,seq:[0,0,2,2,6,6,7,7,0,0,2,2,6,6,7,4]},talk:{s:'idle',fps:7,seq:[1,2,3,6,5,2,1,7,3,2]},hello:{s:'hello',fps:10,seq:[0,1,2,3,4,5,6,7],once:true},pose:{s:'open',fps:4,seq:[3]}};
+let gSt='idle',gI=0,gTm=0,gSpeak=false;
+function gPaint(){const el=gImg.querySelector('[data-on]');if(el)el.style.backgroundPosition=(ST[gSt].seq[gI]*100/7)+'% 0'}
+function gRest(){return !gd.hidden?'pose':gSpeak?'talk':'idle'}   /* ท่าที่ควรกลับไปหลังท่าครั้งเดียวจบ */
 function gPlay(k){
   if(!gHas)return;
-  gSt=k;gFr=0;gImg.querySelectorAll('i').forEach(el=>{if(el.dataset.k===k)el.setAttribute('data-on','');else{el.removeAttribute('data-on');el.style.backgroundPosition=''}});gPaint();
-  clearInterval(gTm);if(reduce.matches)return;
-  gTm=setInterval(()=>{if(document.hidden)return;gFr++;if(gFr>=GA[k].n){if(GA[k].loop)gFr=0;else{gPlay(gd.hidden?'idle':'open');return}}gPaint()},1000/GA[k].fps);
+  if(reduce.matches&&(k==='talk'||k==='hello'))k=gd.hidden?'idle':'pose';   /* ผู้ใช้ตั้งลดการเคลื่อนไหว: ไม่ขยับปาก ไม่กระโดด */
+  const a=ST[k];gSt=k;gI=0;
+  gImg.querySelectorAll('i').forEach(el=>{if(el.dataset.k===a.s)el.setAttribute('data-on','');else{el.removeAttribute('data-on');el.style.backgroundPosition=''}});gPaint();
+  clearInterval(gTm);if(reduce.matches||a.seq.length<2)return;
+  gTm=setInterval(()=>{if(document.hidden)return;gI++;if(gI>=a.seq.length){if(a.once){gPlay(gRest());return}gI=0}gPaint()},1000/a.fps);
 }
-function gHello(){const n=Date.now();if(!gHas||reduce.matches||!gd.hidden||n-gHelloAt<9000)return;gHelloAt=n;gPlay('hello')}
-function say(t,ms=4200){if(!gbub)return;gbub.textContent=t;gbub.classList.add('on');clearTimeout(gT);gT=setTimeout(()=>gbub.classList.remove('on'),ms);gHello()}
+function gStopSay(){clearTimeout(gT);gSpeak=false;gbub.classList.remove('on')}
+function say(t,ms=4200){if(!gbub)return;gbub.textContent=t;gbub.classList.add('on');clearTimeout(gT);gSpeak=true;if(gSt!=='hello'&&gd.hidden)gPlay('talk');gT=setTimeout(()=>{gbub.classList.remove('on');gSpeak=false;if(gSt==='talk')gPlay(gRest())},ms)}
 const gHov=matchMedia('(hover:hover) and (pointer:fine)');let gLeave=0,gHovAt=0;
 gPlay('idle');
-function dock(open){if(open===!gd.hidden)return;gd.hidden=!open;gb.setAttribute('aria-expanded',String(open));gPlay(open?'open':'idle');if(open){gbub.classList.remove('on');tone(880,.08,.05,'triangle')}}
+function dock(open){if(open===!gd.hidden)return;gd.hidden=!open;gb.setAttribute('aria-expanded',String(open));if(open){gStopSay();gPlay('hello');tone(880,.08,.05,'triangle')}else gPlay(gRest())}
 gb.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'&&gHov.matches){clearTimeout(gLeave);if(gd.hidden){gHovAt=Date.now();dock(true)}}});
 $('#guide').addEventListener('pointerenter',()=>clearTimeout(gLeave));
 $('#guide').addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'&&gHov.matches)gLeave=setTimeout(()=>dock(false),380)});
 gb.onclick=()=>{if(Date.now()-gHovAt<700)return;dock(gd.hidden)};$('#g-x').onclick=()=>dock(false);
 $('#g-list').addEventListener('click',e=>{if(e.target.closest('[data-go]'))dock(false)});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!gd.hidden){dock(false);gb.focus()}});
-setTimeout(()=>say('สวัสดีค่ะ! อาการิเองนะคะ ชี้หรือกดที่ฉันเพื่อเปิดเมนูนำทางได้เลย',5600),1800);
-setInterval(()=>{if(gd.hidden&&!document.hidden&&!gbub.classList.contains('on'))gHello()},40000);   /* ทักทายเบา ๆ ทุก 40 วินาทีตอนเมนูปิดอยู่ */
+setTimeout(()=>{if(!gd.hidden)return;gPlay('hello');say('สวัสดีค่ะ! อาการิเองนะคะ ชี้หรือกดที่ฉันเพื่อเปิดเมนูนำทางได้เลย',5600)},1800);
 const gio=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting&&gd.hidden){const g=GUIDE.find(x=>x[0]===en.target.id);if(g)say(g[4])}}),{rootMargin:'-45% 0px -45% 0px'});
 GUIDE.forEach(g=>{const el=document.getElementById(g[0]);if(el)gio.observe(el)});
 
