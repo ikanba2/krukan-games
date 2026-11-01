@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="lite-build" content="c7f7f28c2f">
+<meta name="lite-build" content="f9ad96b2a8">
 <meta name="theme-color" content="#f3f5fb">
 <meta name="description" content="Krukan Online พื้นที่การเรียนรู้ดิจิทัล บทเรียน กิจกรรม การประเมิน และเครื่องมือสำหรับผู้เรียน">
 <title>Krukan Online | DATA CORE</title>
@@ -1540,6 +1540,11 @@ html.boot-on .boot.has-bg{justify-content:flex-start;padding-top:max(26px,env(sa
 .g-dock{bottom:160px}
 @media(max-width:560px){.g-btn .g-spr{width:87px;height:104px;margin-bottom:12px}.g-bubble{bottom:120px}.g-dock{bottom:124px}}
 
+/* ===== v8.1 (1 พ.ย. 2569): เกมแนะนำ — ชั้น 'แนะนำ' บนสุด + ป้าย 'แนะนำ' มุมขวาล่างของปก (มุมซ้ายบนบังชื่อเกมที่เจนอยู่ในภาพปก) ===== */
+.game .rec-b{position:absolute;right:-3px;bottom:9px;z-index:3;padding:4px 9px 4px 10px;background:var(--pink);color:#fff;border:3px solid #0e1530;border-right:0;font:900 13px/1 var(--body);box-shadow:-3px 3px 0 #0e1530;transform:rotate(3deg);transform-origin:right center;white-space:nowrap}
+@media(max-width:560px){.game .rec-b{bottom:6px;padding:3px 7px 3px 8px;font-size:11.5px;border-width:2px;border-right:0;box-shadow:-2px 2px 0 #0e1530}}
+#shelf-rec .shelf-h h3 small{letter-spacing:.14em}
+
 
 </style>
 </head>
@@ -1708,6 +1713,7 @@ const QUICK=[{"k":"MV","t":"MV ไซเบอร์ไรเดอร์เท�
 const MISSIONS=[{"k":"MISSION 01 · MAIN QUEST","t":"ตรวจสอบคะแนนและผลการเรียนรู้","d":"ใช้ผลคะแนนช่วยเลือกเรื่องที่จะกลับไปทบทวน","xp":"+100 XP","b":"เปิดดูคะแนน","c":"#ff3d91","url":"https://www.krukan.in.th/score_1"},{"k":"MISSION 02 · SIDE QUEST","t":"แบบสอบถามและความคิดเห็นจากผู้ใช้งาน","d":"บอกสิ่งที่ชอบ จุดที่ติดขัด และสิ่งที่อยากให้พัฒนา","xp":"+50 XP","b":"แสดงความคิดเห็น","c":"#4ef4d2","url":"https://www.krukan.in.th/poll"},{"k":"MISSION 03 · KNOWLEDGE QUEST","t":"ตัวชี้วัดของแต่ละรายวิชา","d":"เลือกวิชาและระดับชั้น เพื่อดูตัวชี้วัดที่เกี่ยวข้อง","xp":"+75 XP","b":"เปิดดูตัวชี้วัด","c":"#5ca9ff","url":"https://www.krukan.in.th/indicator"}];
 const DOMAINS=[{"e":"🚩","c":"#5ca9ff","t":"โดเมนประจำประเทศไทย","d":".th และ .ไทย เป็นชื่อโดเมนระดับบนสุดของประเทศไทย บอกได้ทันทีว่าเป็นเว็บไซต์ของคนไทย"},{"e":"🛡️","c":"#4ef4d2","t":"ตรวจสอบตัวตนผู้จดทะเบียน","d":"ผู้จดทะเบียนต้องยืนยันตัวตนด้วยเอกสาร ผู้เรียนและผู้ปกครองจึงมั่นใจได้ว่าเว็บนี้เป็นของครูจริง"},{"e":"🔤","c":"#ffd34f","t":".ไทย ชื่อเว็บภาษาไทย","d":"ตั้งชื่อเว็บเป็นภาษาไทยได้ทั้งหมด จำง่าย พิมพ์ง่าย เหมาะกับผู้เรียนตัวเล็ก"}];
 const TICKER=["SEASON 2026 · National Stage","9 Learning Stages · ป.1–ม.3","ARCADE · 39 เกมการเรียนรู้","NEW GAME · ฐานทัพเทคโน (Techno Defense)","NEW GAME · นักสืบคำไทย (Thai Word Detective)","NEW GAME · ศึกทีมเทคโน (Techno Tactics)","NEW GAME · ตำนานไซเบอร์ไรเดอร์เทคโน (Techno Saga)","NEW GAME · สมรภูมิคณิต (Techno Math)","NEW GAME · ตะลุยเมืองอักษร (Techno Aksorn)","LEARNING TRANSFORM · แปลงร่างการเรียนรู้","รู้จัก .th และ .ไทย"];
+const RECOMMENDED=["techno-saga","techno-talk","techno-math","techno-aksorn","net-patrol","type-hero","techno-grid"];
 
 const SV=p=>'<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">'+p+'</svg>';
 const IC={next:SV('<path d="M9 5l7 7-7 7"/>'),prev:SV('<path d="M15 5l-7 7 7 7"/>'),down:SV('<path d="M5 9l7 7 7-7"/>'),up:SV('<path d="M5 15l7-7 7 7"/>'),
@@ -1800,14 +1806,18 @@ const gname=t=>{const m=/^(.*?)\s*\((.+)\)\s*$/.exec(t);return m?{th:m[1],en:m[2
 /* คลังเกมแยกเป็น "ชั้น" ตามหมวด (ลำดับคงที่ หมวดที่ไม่มีเกมไม่แสดง) · ชั้นหนึ่งโชว์ SHELF_N เกมแรก กด ดูทั้งหมด เพื่อกางชั้นนั้น · ปุ่มกรอง = โชว์เฉพาะชั้นนั้นแบบกางเต็ม */
 const GROUPS=[['coding','💻','CODING','var(--blue)','#fff'],['computer','🖱️','COMPUTER SKILLS','var(--violet)','#fff'],['digital','🛡️','DIGITAL CITIZEN','var(--cyan)','#0e1530'],['math','➗','MATH','var(--pink)','#fff'],
   ['reading','📖','THAI LANGUAGE','var(--yellow)','#0e1530'],['english','🔤','ENGLISH','#00b86b','#fff'],['adventure','⚔️','ADVENTURE','var(--red)','#fff'],['exam','📝','EXAM PREP','#ff8a2a','#0e1530']];
-const shelfOpen=new Set();let SHELF_N=4;const shelfN=()=>innerWidth>=1100?4:innerWidth>=861?3:innerWidth>=561?2:999;   /* โชว์ 1 แถวต่อชั้น กดปุ่มกางทั้งชั้น */SHELF_N=shelfN();addEventListener('resize',()=>{const n=shelfN();if(n!==SHELF_N){SHELF_N=n;renderGames()}});
+const shelfOpen=new Set(['rec']);let SHELF_N=4;   /* ชั้น 'แนะนำ' กางไว้ตั้งแต่เปิดหน้า */const shelfN=()=>innerWidth>=1100?4:innerWidth>=861?3:innerWidth>=561?2:999;   /* โชว์ 1 แถวต่อชั้น กดปุ่มกางทั้งชั้น */SHELF_N=shelfN();addEventListener('resize',()=>{const n=shelfN();if(n!==SHELF_N){SHELF_N=n;renderGames()}});
 const grpOf=x=>(ACTIVITY_INFO[x.title]||{}).group||'digital';
+/* ชั้น 'แนะนำ' อยู่บนสุดของคลังเกม (เฉพาะมุมมอง ทั้งหมด) + ป้าย 'แนะนำ' บนการ์ด + ในแต่ละหมวดเรียงเกมแนะนำขึ้นก่อน · รายการอยู่ที่ RECOMMENDED ใน tools/build-home-lite.py */
+const REC_G=['rec','⭐','RECOMMENDED','var(--pink)','#fff'];GROUP_LABELS.rec='แนะนำ';
+const slugOf=x=>x.url.replace(/\/+$/,'').split('/').pop(),recIdx=x=>{const i=RECOMMENDED.indexOf(slugOf(x));return i<0?99:i};
 function gameCard(x){const inf=ACTIVITY_INFO[x.title]||{},t=TONES[DATA.activities.indexOf(x)%TONES.length],cov=ASSETS.covers[x.url]||x.image||'';
-  return '<a class="card game" style="--t:'+t+'" href="'+esc(x.url)+'" '+ext+'><span class="cover"><span class="em" aria-hidden="true">'+(GEMO[inf.group]||'🎮')+'</span>'+img(cov,'',480,270)+'<span class="genre">'+(GEMO[inf.group]||'🎮')+' '+esc(GROUP_LABELS[inf.group]||'เกม')+'</span><span class="aud" title="ชั้นเรียนที่เหมาะกับเกมนี้">👥 '+esc(inf.audience||'ทุกระดับ')+'</span>'+(x.new?'<span class="rib">NEW</span>':'')+'</span><span class="body"><h3 title="'+esc(x.title)+'">'+esc(gname(x.title).th)+(gname(x.title).en?'<small>('+esc(gname(x.title).en)+')</small>':'')+'</h3><p class="pf">'+esc(inf.desc||'')+'</p><p class="pb">'+esc(inf.tag||inf.brief||inf.desc||'')+'</p><span class="foot"><span class="b3d sm go">'+IC.play+' เล่น</span></span></span></a>'}
+  return '<a class="card game" style="--t:'+t+'" href="'+esc(x.url)+'" '+ext+'><span class="cover"><span class="em" aria-hidden="true">'+(GEMO[inf.group]||'🎮')+'</span>'+img(cov,'',480,270)+'<span class="genre">'+(GEMO[inf.group]||'🎮')+' '+esc(GROUP_LABELS[inf.group]||'เกม')+'</span><span class="aud" title="ชั้นเรียนที่เหมาะกับเกมนี้">👥 '+esc(inf.audience||'ทุกระดับ')+'</span>'+(recIdx(x)<99?'<span class="rec-b">⭐ แนะนำ</span>':'')+(x.new?'<span class="rib">NEW</span>':'')+'</span><span class="body"><h3 title="'+esc(x.title)+'">'+esc(gname(x.title).th)+(gname(x.title).en?'<small>('+esc(gname(x.title).en)+')</small>':'')+'</h3><p class="pf">'+esc(inf.desc||'')+'</p><p class="pb">'+esc(inf.tag||inf.brief||inf.desc||'')+'</p><span class="foot"><span class="b3d sm go">'+IC.play+' เล่น</span></span></span></a>'}
 let gQ='';const hay=x=>{const i=ACTIVITY_INFO[x.title]||{};return (x.title+' '+(i.tag||'')+' '+(i.brief||'')+' '+(i.audience||'')+' '+(GROUP_LABELS[i.group]||'')).toLowerCase()};
 function renderGames(){
   const q=gQ.trim().toLowerCase(),match=x=>!q||q.split(/\s+/).every(w=>hay(x).includes(w));
-  const groups=GROUPS.filter(g=>gF==='all'||g[0]===gF).map(g=>[g,DATA.activities.filter(x=>grpOf(x)===g[0]&&match(x))]).filter(([g,l])=>l.length);
+  const recList=RECOMMENDED.map(sl=>DATA.activities.find(x=>slugOf(x)===sl)).filter(x=>x&&match(x));
+  const groups=[...(gF==='all'&&recList.length?[[REC_G,recList]]:[]),...GROUPS.filter(g=>gF==='all'||g[0]===gF).map(g=>[g,DATA.activities.filter(x=>grpOf(x)===g[0]&&match(x)).sort((a,b)=>recIdx(a)-recIdx(b))]).filter(([g,l])=>l.length)];
   if(!groups.length){$('#shelves').innerHTML='<p class="gnone">ไม่พบเกมที่ตรงกับคำค้น ลองพิมพ์คำอื่น เช่น คณิต พิมพ์ รหัส</p>';return}
   $('#shelves').innerHTML=groups.map(([g,list])=>{const canOpen=list.length>SHELF_N&&gF==='all'&&!q,open=!canOpen||shelfOpen.has(g[0]),show=open?list:list.slice(0,SHELF_N),hid=list.length-SHELF_N,name=esc(GROUP_LABELS[g[0]]||g[0]);
     return '<section class="shelf'+(canOpen?' can-open':'')+(open?' is-open':'')+'" id="shelf-'+g[0]+'" style="--k:'+g[3]+';--fg:'+g[4]+'" aria-label="หมวด '+name+'"><header class="shelf-h"'+(canOpen?' data-shelf="'+g[0]+'" role="button" tabindex="0" aria-expanded="'+open+'" title="กดเพื่อ'+(open?'ย่อ':'ดูทั้งหมด')+'"':'')+'><span class="em" aria-hidden="true">'+g[1]+'</span><h3>'+name+'<small>'+g[2]+'</small></h3><span class="cnt">'+list.length+' เกม</span>'
