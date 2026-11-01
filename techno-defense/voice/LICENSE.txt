@@ -1,0 +1,1 @@
+Voice lines from Kenney Voiceover Pack (https://opengameart.org/content/voiceover-pack-40-lines), CC0. Credit Kenney.nl is optional. Trimmed and normalized by build_voice.py. Downloaded 1 Nov 2026.
