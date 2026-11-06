@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="lite-build" content="6e60c7eccf">
+<meta name="lite-build" content="4041a745fa">
 <meta name="theme-color" content="#f3f5fb">
 <meta name="description" content="Krukan Online พื้นที่การเรียนรู้ดิจิทัล บทเรียน กิจกรรม การประเมิน และเครื่องมือสำหรับผู้เรียน">
 <title>Krukan Online | DATA CORE</title>
@@ -1544,6 +1544,30 @@ html.boot-on .boot.has-bg{justify-content:flex-start;padding-top:max(26px,env(sa
 .game .rec-b{position:absolute;right:-3px;bottom:9px;z-index:3;padding:4px 9px 4px 10px;background:var(--pink);color:#fff;border:3px solid #0e1530;border-right:0;font:900 13px/1 var(--body);box-shadow:-3px 3px 0 #0e1530;transform:rotate(3deg);transform-origin:right center;white-space:nowrap}
 @media(max-width:560px){.game .rec-b{bottom:6px;padding:3px 7px 3px 8px;font-size:11.5px;border-width:2px;border-right:0;box-shadow:-2px 2px 0 #0e1530}}
 
+/* ===== เพจ Facebook Krukan.in.th (6 พ.ย. 2569): ป้ายบนสุด · การ์ดใต้การ์ดผู้สอน · ปุ่มท้ายหน้า ===== */
+.fbpill,.fbcard,.ffb{--fb:#1877f2;text-decoration:none}
+.fbpill svg,.fbcard svg,.ffb svg{width:100%;height:100%;display:block}
+.fbpill{display:inline-flex;align-items:center;gap:7px;padding:6px 14px 6px 6px;background:var(--fb);color:#fff;border:3px solid var(--ink);border-radius:99px;box-shadow:3px 3px 0 var(--ink);font:700 15px/1.1 var(--body);transform:rotate(1.5deg);transition:transform .12s cubic-bezier(.3,1.6,.5,1),box-shadow .12s}
+.fbpill svg{width:26px;height:26px;padding:4px;background:#fff;color:var(--fb);border-radius:50%;box-sizing:border-box}
+.fbpill:hover{transform:translate(-2px,-2px) rotate(1.5deg);box-shadow:5px 5px 0 var(--ink)}.fbpill:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.fbcard{position:relative;display:flex;align-items:center;gap:11px;margin-top:10px;padding:10px 12px;overflow:hidden;color:#fff;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+  background:radial-gradient(circle at 1px 1px,rgba(255,255,255,.22) 1px,transparent 1.6px) 0 0/9px 9px,linear-gradient(120deg,#0b5fd6,var(--fb) 55%,#4f9bff);transition:transform .12s cubic-bezier(.3,1.6,.5,1),box-shadow .12s}
+.fbcard::after{content:'';position:absolute;top:-40%;left:-30%;width:28%;height:180%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:rotate(18deg);animation:fbShine 4.5s ease-in-out infinite;pointer-events:none}
+@keyframes fbShine{0%,62%{left:-30%}100%{left:130%}}
+.fbcard:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}.fbcard:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.fbi{flex:none;width:44px;height:44px;padding:8px;background:#fff;color:var(--fb);border:3px solid #0e1530;border-radius:50%;box-sizing:border-box;transform:rotate(-8deg)}
+.fbt{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.2}
+.fbt small{align-self:flex-start;padding:1px 7px;background:#0e1530;color:#fff;font:800 10.5px/1.35 var(--display);letter-spacing:.08em}
+.fbt b{margin-top:3px;font:800 18px/1.15 var(--display)}.fbt em{font-style:normal;font-size:13px;opacity:.92}
+.fbgo{flex:none;padding:6px 11px;background:var(--yellow);color:#0e1530;border:2px solid #0e1530;box-shadow:2px 2px 0 #0e1530;font:800 14px/1 var(--body);transform:rotate(-3deg)}
+.ffb{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;background:var(--fb);color:#fff;border:2px solid #fff;border-radius:99px;box-shadow:4px 4px 0 #fff;font:700 15px/1.1 var(--body);transition:transform .12s}
+.ffb svg{width:28px;height:28px;padding:5px;background:#fff;color:var(--fb);border-radius:50%;box-sizing:border-box}.ffb:hover{transform:translate(-2px,-2px)}
+@media(max-width:560px){.fbpill{padding:5px;transform:none}.fbpill span{display:none}.fbt em{display:none}}
+@media(prefers-reduced-motion:reduce){.fbcard::after{animation:none;display:none}}
+.hero .player .fbcard{grid-column:1/-1;margin-top:0}
+@media(max-width:560px){.fbcard{padding:8px 10px}.fbt b{font-size:16px}}
+.fbt b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:17px}.fbt em{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.fbgo{font-size:13px;padding:5px 9px}
+
 
 </style>
 </head>
@@ -1562,7 +1586,7 @@ html.boot-on .boot.has-bg{justify-content:flex-start;padding-top:max(26px,env(sa
 
 <header class="wrap top">
   <a class="brand" href="https://www.krukan.in.th" target="_blank" rel="noopener noreferrer" aria-label="Krukan Online หน้าแรก"><img id="logo" alt="" width="52" height="52"><span><b>KRUKAN ONLINE</b><small>PLAY TO LEARN</small></span></a><a class="dn" href="https://www.ครูการ.ไทย" target="_blank" rel="noopener noreferrer" title="อีกชื่อของเว็บไซต์"><i class="flag" aria-hidden="true"></i>www.ครูการ.ไทย</a>
-  <div class="tools-top"><span class="ver" id="ver"></span><button class="b3d ghost icon-btn" id="theme" type="button" aria-label="สลับธีมสว่าง/มืด" title="สลับธีม">🌙</button></div>
+  <div class="tools-top"><a class="fbpill" href="https://www.facebook.com/people/KruKaninth/61596032571562/" target="_blank" rel="noopener noreferrer" aria-label="ติดตามเพจ Facebook Krukan.in.th" title="เพจ Facebook Krukan.in.th"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.2 8.2h2.9V4.3h-3.1c-3 0-4.6 1.9-4.6 4.7v2H7v3.9h2.4V22h4.1v-7.1h2.9l.5-3.9h-3.4V9.4c0-.8.3-1.2.7-1.2z"/></svg><span>ติดตามเพจ</span></a><span class="ver" id="ver"></span><button class="b3d ghost icon-btn" id="theme" type="button" aria-label="สลับธีมสว่าง/มืด" title="สลับธีม">🌙</button></div>
 </header>
 
 <section class="wrap hero" id="home">
@@ -1594,6 +1618,7 @@ html.boot-on .boot.has-bg{justify-content:flex-start;padding-top:max(26px,env(sa
     </article>
     <div class="xp"><div><span>LEVEL UP · ปีการศึกษา 2569</span><span id="xp-txt"></span></div><i><b id="xp-bar"></b></i></div>
     <div class="pal" aria-label="รายงานข้อตกลงในการพัฒนางาน (Performance Agreement: PA)"><a class="pr" href="https://youtu.be/rkBovZawt1g" target="_blank" rel="noopener noreferrer" aria-label="เปิดวิดีโอรายงาน Performance Agreement 2569"><i aria-hidden="true">🏆</i><b>Performance Agreement 2569</b><small>ON AIR</small></a><div class="pr lk" aria-label="Performance Agreement 2570 กำลังจัดทำ"><i aria-hidden="true">🔒</i><b>Performance Agreement 2570</b><small>LOCKED</small></div><div class="pr lk" aria-label="Performance Agreement 2571 กำลังจัดทำ"><i aria-hidden="true">🔒</i><b>Performance Agreement 2571</b><small>LOCKED</small></div></div>
+    <a class="fbcard" href="https://www.facebook.com/people/KruKaninth/61596032571562/" target="_blank" rel="noopener noreferrer" aria-label="เปิดเพจ Facebook Krukan.in.th"><span class="fbi"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.2 8.2h2.9V4.3h-3.1c-3 0-4.6 1.9-4.6 4.7v2H7v3.9h2.4V22h4.1v-7.1h2.9l.5-3.9h-3.4V9.4c0-.8.3-1.2.7-1.2z"/></svg></span><span class="fbt"><small>FACEBOOK PAGE</small><b>เพจ Krukan.in.th</b><em>ข่าวเกมใหม่ สื่อใหม่</em></span><span class="fbgo">ติดตาม ›</span></a>
   </aside>
 </section>
 
@@ -1680,7 +1705,7 @@ html.boot-on .boot.has-bg{justify-content:flex-start;padding-top:max(26px,env(sa
   <div class="wrap fwrap">
     <div class="fl"><img id="flogo" alt="โลโก้ Krukan Online" width="64" height="64"><span><b>KruKan.in.th</b><small>DESIGNED FOR LEARNING · BUILT FOR EXPERIENCE</small><a class="fdn" href="https://www.ครูการ.ไทย" target="_blank" rel="noopener noreferrer">www.ครูการ.ไทย</a></span></div>
     <p>© 2026 KruKan.in.th · www.ครูการ.ไทย · โรงเรียนวัดท่าชุมนุม · สพป.อ่างทอง<br>ผู้จัดทำ: นายยุทธการ เจียตระกูล</p>
-    <div class="fr"><img class="fwave" data-asset="poseWave" alt="" aria-hidden="true"><a class="lic" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="license noopener noreferrer"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" alt="Creative Commons BY-NC-SA 4.0" width="88" height="31"></a><button class="b3d gold sm" id="ai-btn" type="button">🤖 การใช้ AI · AI Disclosure</button></div>
+    <div class="fr"><a class="ffb" href="https://www.facebook.com/people/KruKaninth/61596032571562/" target="_blank" rel="noopener noreferrer" aria-label="เพจ Facebook Krukan.in.th"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.2 8.2h2.9V4.3h-3.1c-3 0-4.6 1.9-4.6 4.7v2H7v3.9h2.4V22h4.1v-7.1h2.9l.5-3.9h-3.4V9.4c0-.8.3-1.2.7-1.2z"/></svg><span>Facebook · Krukan.in.th</span></a><img class="fwave" data-asset="poseWave" alt="" aria-hidden="true"><a class="lic" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="license noopener noreferrer"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" alt="Creative Commons BY-NC-SA 4.0" width="88" height="31"></a><button class="b3d gold sm" id="ai-btn" type="button">🤖 การใช้ AI · AI Disclosure</button></div>
   </div>
 </footer>
 
