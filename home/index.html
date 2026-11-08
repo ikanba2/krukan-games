@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="lite-build" content="7d068b8f98">
+<meta name="lite-build" content="cd479101df">
 <meta name="theme-color" content="#f3f5fb">
 <meta name="description" content="Krukan Online พื้นที่การเรียนรู้ดิจิทัล บทเรียน กิจกรรม การประเมิน และเครื่องมือสำหรับผู้เรียน">
 <title>Krukan Online | DATA CORE</title>
@@ -1609,11 +1609,19 @@ html.boot-on .boot.has-bg{justify-content:flex-start;padding-top:max(26px,env(sa
 .q-grid>.qc:last-child:nth-child(odd) .qc-img{aspect-ratio:16/9}
 .qc2 .qc-body{flex-direction:column;align-items:stretch;gap:8px}
 .qc-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.qc2 .qc-go{justify-content:center;text-decoration:none;padding:0 8px;font-size:13px}
+.qc2 .qc-go{justify-content:center;text-decoration:none}
 .qc2 .qc-go.yt{--c:#ff3344;--fg:#fff}
 @media(max-width:1060px){.q-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding:4px 14px 14px 4px;margin:0 -4px;scrollbar-width:thin}.q-grid>.qc{flex:0 0 46%;scroll-snap-align:start}.q-grid>.qc .qc-img,.q-grid>.qc:last-child:nth-child(odd) .qc-img{aspect-ratio:16/9}}
 @media(max-width:760px){.q-grid>.qc{flex-basis:78%}}
 @media(min-width:1061px){.q-grid .qc-title b{font-size:20px;padding:3px 10px 5px}.q-grid .qc-title small{font-size:9.5px}.q-grid .qc-body p{font-size:12.5px}}
+
+/* 8 พ.ย. 2569 ผู้ใช้: ปุ่มการ์ดนิยายให้ลักษณะเดียวกับการ์ดอื่น (ข้อความซ้าย ปุ่มขาวขวา) */
+.qc2 .qc-body{flex-direction:row;align-items:center;gap:10px}
+.qc-btns{display:flex;flex:none;gap:6px}
+.qc2 .qc-go,.qc2 .qc-go.yt{--c:var(--c);--fg:#0e1530}
+.qc2 .qc-go{white-space:nowrap;gap:4px}
+@media(min-width:1061px){.qc2 .qc-body{gap:8px}.qc-btns{gap:5px}}
+/* ปุ่มอ่าน/ฟัง ใช้ขนาดเดียวกับปุ่มการ์ดอื่น (ไม่บังคับขนาดเอง) */
 
 
 </style>
@@ -1840,14 +1848,14 @@ const ready=TRANSFORM.steps.filter(s=>s.ready).length;$('#xp-txt').textContent='
 const QUESTS={
   MV:{no:'01',en:'MV · FULL SONG',t:'เฮนชิน! MV เพลงเต็ม',d:'มิวสิกวิดีโอเพลง ไซเบอร์ไรเดอร์เทคโน ฉบับเต็ม ดูบน YouTube',b:'ดู MV',isNew:true},
   MANGA:{no:'03',en:'MANGA · 24 EPISODES',t:'อ่านมังงะ',d:'นิยายมังงะ Cyber Rider Techno ครบ 24 ตอน อ่านฟรีบนเว็บ',b:'อ่านเลย'},
-  NOVEL:{no:'02',en:'NOVEL · 24 EPISODES',t:'นิยาย 24 ตอน',d:'ไซเบอร์ไรเดอร์เทคโน ครบ 24 ตอน อ่านบนเว็บหรือฟังบน YouTube ก็ได้',b:'อ่านบนเว็บ',b2:'ฟังบน YouTube',isNew:true},
+  NOVEL:{no:'02',en:'NOVEL · 24 EPISODES',t:'นิยาย 24 ตอน',d:'ไซเบอร์ไรเดอร์เทคโน ครบ 24 ตอน อ่านบนเว็บหรือฟังบน YouTube ก็ได้',b:'อ่าน',b2:'ฟัง',isNew:true},
   ORIGIN:{no:'03',en:'ORIGIN · TECHNO QUEST',t:'ที่มาของเว็บ',d:'แนวคิดและเส้นทางเบื้องหลังเว็บนี้ สรุปไว้ในภาพเดียว',b:'ดูที่มา'},
   CONTACT:{no:'04',en:'CONTACT · ครูการ',t:'ติดต่อครู',d:'ทักทาย สอบถาม หรือส่งความคิดเห็นถึงครูการได้ทุกช่องทาง',b:'ติดต่อเลย'}
 };
 $('#q-grid').innerHTML=QUICK.map(q=>{const Q=QUESTS[q.k]||{no:'',en:q.k,t:q.t,d:'',b:'เปิด'},im=(ASSETS.quests||{})[q.k]||'';
   if(q.url2)return '<div class="qc qc2" style="--c:'+q.c+'"><a class="qc-img" href="'+esc(q.url)+'" '+ext+' aria-label="'+esc(Q.t)+' อ่านบนเว็บ">'+img(im,'',720,405)+'<i class="qc-ht" aria-hidden="true"></i><span class="qc-title"><small>'+esc(Q.en)+'</small><b>'+esc(Q.t)+'</b></span></a>'
     +'<span class="qc-no" aria-hidden="true">'+Q.no+'</span>'+(Q.isNew?'<span class="qc-new star" aria-label="ใหม่">NEW</span>':'')
-    +'<span class="qc-body"><p>'+esc(Q.d)+'</p><span class="qc-btns"><a class="b3d sm qc-go" href="'+esc(q.url)+'" '+ext+'>📖 '+esc(Q.b)+'</a><a class="b3d sm qc-go yt" href="'+esc(q.url2)+'" '+ext+'>🎧 '+esc(Q.b2)+'</a></span></span></div>';
+    +'<span class="qc-body"><p>'+esc(Q.d)+'</p><span class="qc-btns"><a class="b3d sm qc-go" href="'+esc(q.url)+'" '+ext+' aria-label="อ่านนิยายบนเว็บ">'+esc(Q.b)+' '+IC.next+'</a><a class="b3d sm qc-go" href="'+esc(q.url2)+'" '+ext+' aria-label="ฟังนิยายบน YouTube">'+esc(Q.b2)+' '+IC.next+'</a></span></span></div>';
   return '<a class="qc" style="--c:'+q.c+'" href="'+esc(q.url)+'" '+ext+'><span class="qc-img">'+img(im,'',720,405)+'<i class="qc-ht" aria-hidden="true"></i><span class="qc-title"><small>'+esc(Q.en)+'</small><b>'+esc(Q.t)+'</b></span></span>'
     +'<span class="qc-no" aria-hidden="true">'+Q.no+'</span>'+(Q.isNew?'<span class="qc-new star" aria-label="ใหม่">NEW</span>':'')
     +'<span class="qc-body"><p>'+esc(Q.d)+'</p><span class="b3d sm qc-go">'+esc(Q.b)+' '+IC.next+'</span></span></a>'}).join('');
