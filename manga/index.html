@@ -142,6 +142,10 @@ figure.fig .retry{font:inherit;background:none;border:0;color:var(--blue);text-d
 figure.fig.lowres .retry{display:inline}
 .epnav{display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;margin:36px 0 0}
 .epnav .b3d{flex:1;min-width:130px}
+.follow{margin:28px 0 0;padding:18px 20px;border:4px solid var(--ink);border-radius:8px;background:var(--paper);box-shadow:6px 6px 0 var(--ink);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.follow p{flex:1 1 260px;margin:0;font-weight:600;line-height:1.5}
+.follow p small{display:block;font-weight:400;opacity:.8}
+.b3d.fb{--c:#1877f2;--fg:#fff}.b3d.yt{--c:#ff2a2a;--fg:#fff}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--paper);border:3px solid var(--paper);box-shadow:4px 4px 0 var(--pink);padding:10px 16px;font:600 14px/1.4 var(--body);z-index:95;display:none;gap:14px;align-items:center;max-width:92vw;border-radius:4px}
 .toast.on{display:flex}
 .toast button{background:var(--yellow);color:#0e1530;border:3px solid #0e1530;border-radius:4px;padding:3px 12px;font:800 13px/1.3 var(--body)}
@@ -250,7 +254,7 @@ body.listening .toast{bottom:calc(var(--plh,230px) + 10px)}
 <footer class="site" id="siteFooter">
   <div class="wrap">
     <p class="ai-note">ภาพประกอบในเรื่องสร้างด้วยเครื่องมือ AI และเขียนหน้าเว็บนี้ด้วยความช่วยเหลือของ Claude ตัวละคร เหตุการณ์ และสถานที่เป็นเรื่องแต่งทั้งสิ้น · ประวัติการอ่านจำไว้เฉพาะระหว่างที่เปิดหน้านี้อยู่ ปิดหรือโหลดหน้าใหม่แล้วจะเริ่มต้นใหม่ และไม่มีการส่งข้อมูลการอ่านไปที่ใด</p>
-    <p><a href="https://www.krukan.in.th/" target="_blank" rel="noopener">krukan.in.th</a> · <a href="https://www.krukan.in.th/" target="_blank" rel="noopener">ครูการ.ไทย</a></p>
+    <p><a href="https://www.krukan.in.th/" target="_blank" rel="noopener">krukan.in.th</a> · <a href="https://www.krukan.in.th/" target="_blank" rel="noopener">ครูการ.ไทย</a> · <a href="https://www.facebook.com/people/KruKaninth/61596032571562/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.youtube.com/@krukan-th" target="_blank" rel="noopener">YouTube</a> · <a href="https://www.tiktok.com/@krukan.in.th" target="_blank" rel="noopener">TikTok</a></p>
   </div>
 </footer>
 
@@ -267,6 +271,7 @@ body.listening .toast{bottom:calc(var(--plh,230px) + 10px)}
     <div id="stage" aria-live="polite"><img id="stageImg" alt=""><div class="scap" id="stageCap"></div></div>
     <article class="panel sheet" id="article"></article>
     <nav class="epnav" id="epnav"></nav>
+    <aside class="follow"><p>ชอบนิยายเรื่องนี้ไหม? กดติดตามไว้ ไม่พลาดเรื่องใหม่จากครูการ<small>มีคลิปเกม บทเรียน และนิยายเวอร์ชันฟังเสียงด้วย</small></p><a class="b3d fb sm" href="https://www.facebook.com/people/KruKaninth/61596032571562/" target="_blank" rel="noopener">ติดตามเพจ Facebook</a><a class="b3d yt sm" href="https://www.youtube.com/@krukan-th" target="_blank" rel="noopener">YouTube</a></aside>
   </div>
 </div>
 
