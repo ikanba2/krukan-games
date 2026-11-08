@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="lite-build" content="30ecaa3a6e">
+<meta name="lite-build" content="bd3ad2922f">
 <meta name="theme-color" content="#f3f5fb">
 <meta name="description" content="Krukan Online พื้นที่การเรียนรู้ดิจิทัล บทเรียน กิจกรรม การประเมิน และเครื่องมือสำหรับผู้เรียน">
 <title>Krukan Online | DATA CORE</title>
@@ -1579,26 +1579,29 @@ html.boot-on .boot.has-bg{justify-content:flex-start;padding-top:max(26px,env(sa
 .soc.top .si i{width:36px;height:36px;padding:7px}
 .soccard{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:9px 12px;background:var(--paper);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink)}
 .soccard small{font:800 11px/1.2 var(--display);letter-spacing:.12em;color:var(--muted)}
-.soc.card .si{padding:3px 12px 3px 3px;background:var(--b);border:3px solid var(--ink);border-radius:99px;box-shadow:3px 3px 0 var(--ink)}
-.soc.card .si i{width:30px;height:30px;padding:6px;border-width:0;box-shadow:none;background:transparent}
+.soc.sc3 .si{padding:3px 12px 3px 3px;background:var(--b);border:3px solid var(--ink);border-radius:99px;box-shadow:3px 3px 0 var(--ink)}
+.soc.sc3 .si i{width:30px;height:30px;padding:6px;border-width:0;box-shadow:none;background:transparent}
 .soc.foot{justify-content:flex-end}
 .soc.foot .si{color:#fff}.soc.foot .si i{border-color:#fff;box-shadow:3px 3px 0 #fff}
 @media(max-width:860px){.soc.foot{justify-content:center}}
-@media(max-width:560px){.soc.top .si i{width:32px;height:32px;padding:6px;border-width:2px}.soc.top{gap:6px}.soccard{padding:8px 10px}.soc.card .si{padding:2px 10px 2px 2px;font-size:13px}.soc.card .si i{width:26px;height:26px}}
+@media(max-width:560px){.soc.top .si i{width:32px;height:32px;padding:6px;border-width:2px}.soc.top{gap:6px}.soccard{padding:8px 10px}.soc.sc3 .si{padding:2px 10px 2px 2px;font-size:13px}.soc.sc3 .si i{width:26px;height:26px}}
 .q-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
 .q-grid>.qc{grid-column:span 2}.q-grid>.qc:nth-child(-n+2){grid-column:span 3}
 @media(max-width:1060px){.q-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.q-grid>.qc,.q-grid>.qc:nth-child(-n+2){grid-column:auto}.q-grid>.qc:last-child:nth-child(odd){grid-column:1/-1}.q-grid>.qc:last-child:nth-child(odd) .qc-img{aspect-ratio:21/9}}
 @media(max-width:760px){.q-grid{grid-template-columns:1fr}.q-grid>.qc:last-child:nth-child(odd) .qc-img{aspect-ratio:2/1}}
 @media(max-width:560px){.q-grid>.qc:last-child:nth-child(odd) .qc-img{aspect-ratio:16/9}}
 .soccard{flex-direction:column;align-items:stretch;gap:7px}
-.soc.card{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.soc.card .si{justify-content:center;gap:5px;padding:4px 6px;font-size:13px;border-radius:10px;min-width:0}
-.soc.card .si span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.soc.card .si i{width:24px;height:24px;padding:3px}
-@media(max-width:560px){.soc.card .si{padding:4px 4px;font-size:12px}.soc.card .si i{width:22px;height:22px}}
-.soc.card .si{flex-direction:column;gap:2px;padding:5px 2px 4px;font-size:11px;letter-spacing:-.01em}
-.soc.card .si span{overflow:visible}
-.soc.card .si i{width:26px;height:26px;padding:3px}
+.soc.sc3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.soc.sc3 .si{justify-content:center;gap:5px;padding:4px 6px;font-size:13px;border-radius:10px;min-width:0}
+.soc.sc3 .si span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.soc.sc3 .si i{width:24px;height:24px;padding:3px}
+@media(max-width:560px){.soc.sc3 .si{padding:4px 4px;font-size:12px}.soc.sc3 .si i{width:22px;height:22px}}
+.soc.sc3 .si{flex-direction:column;gap:2px;padding:5px 2px 4px;font-size:11px;letter-spacing:-.01em}
+.soc.sc3 .si span{overflow:visible}
+.soc.sc3 .si i{width:26px;height:26px;padding:3px}
+
+/* 8 พ.ย. 2569 ผู้ใช้: โซเชียลในคอลัมน์ครูไม่เอากรอบซ้อนกรอบ › ไม่มีกล่องรอบนอก เหลือแค่หัวข้อเล็ก + 3 ปุ่ม (คลาส card เดิมไปชนสไตล์การ์ดทั่วไปจึงเปลี่ยนเป็น sc3) */
+.soccard{padding:2px 0 0;background:none;border:0;box-shadow:none}
 
 
 </style>
@@ -1650,7 +1653,7 @@ html.boot-on .boot.has-bg{justify-content:flex-start;padding-top:max(26px,env(sa
     </article>
     <div class="xp"><div><span>LEVEL UP · ปีการศึกษา 2569</span><span id="xp-txt"></span></div><i><b id="xp-bar"></b></i></div>
     <div class="pal" aria-label="รายงานข้อตกลงในการพัฒนางาน (Performance Agreement: PA)"><a class="pr" href="https://youtu.be/rkBovZawt1g" target="_blank" rel="noopener noreferrer" aria-label="เปิดวิดีโอรายงาน Performance Agreement 2569"><i aria-hidden="true">🏆</i><b>Performance Agreement 2569</b><small>ON AIR</small></a><div class="pr lk" aria-label="Performance Agreement 2570 กำลังจัดทำ"><i aria-hidden="true">🔒</i><b>Performance Agreement 2570</b><small>LOCKED</small></div><div class="pr lk" aria-label="Performance Agreement 2571 กำลังจัดทำ"><i aria-hidden="true">🔒</i><b>Performance Agreement 2571</b><small>LOCKED</small></div></div>
-    <div class="soccard"><small>FOLLOW · ติดตามครูการ</small><nav class="soc card" aria-label="โซเชียลมีเดียของครูการ"><a class="si fb" href="https://www.facebook.com/people/KruKaninth/61596032571562/" target="_blank" rel="noopener noreferrer" aria-label="เพจ Facebook Krukan.in.th" title="เพจ Facebook Krukan.in.th"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.2 8.2h2.9V4.3h-3.1c-3 0-4.6 1.9-4.6 4.7v2H7v3.9h2.4V22h4.1v-7.1h2.9l.5-3.9h-3.4V9.4c0-.8.3-1.2.7-1.2z"/></svg></i><span>Facebook</span></a><a class="si yt" href="https://www.youtube.com/@krukan-th" target="_blank" rel="noopener noreferrer" aria-label="ช่อง YouTube @krukan-th" title="ช่อง YouTube @krukan-th"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9l5.8 3.1z"/></svg></i><span>YouTube</span></a><a class="si tt" href="https://www.tiktok.com/@krukan.in.th" target="_blank" rel="noopener noreferrer" aria-label="TikTok @krukan.in.th" title="TikTok @krukan.in.th"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></i><span>TikTok</span></a></nav></div>
+    <div class="soccard"><small>FOLLOW · ติดตามครูการ</small><nav class="soc sc3" aria-label="โซเชียลมีเดียของครูการ"><a class="si fb" href="https://www.facebook.com/people/KruKaninth/61596032571562/" target="_blank" rel="noopener noreferrer" aria-label="เพจ Facebook Krukan.in.th" title="เพจ Facebook Krukan.in.th"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.2 8.2h2.9V4.3h-3.1c-3 0-4.6 1.9-4.6 4.7v2H7v3.9h2.4V22h4.1v-7.1h2.9l.5-3.9h-3.4V9.4c0-.8.3-1.2.7-1.2z"/></svg></i><span>Facebook</span></a><a class="si yt" href="https://www.youtube.com/@krukan-th" target="_blank" rel="noopener noreferrer" aria-label="ช่อง YouTube @krukan-th" title="ช่อง YouTube @krukan-th"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9l5.8 3.1z"/></svg></i><span>YouTube</span></a><a class="si tt" href="https://www.tiktok.com/@krukan.in.th" target="_blank" rel="noopener noreferrer" aria-label="TikTok @krukan.in.th" title="TikTok @krukan.in.th"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></i><span>TikTok</span></a></nav></div>
   </aside>
 </section>
 
