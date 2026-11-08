@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="lite-build" content="a52f5a2fed">
+<meta name="lite-build" content="8e6eee8773">
 <meta name="theme-color" content="#f3f5fb">
 <meta name="description" content="Krukan Online พื้นที่การเรียนรู้ดิจิทัล บทเรียน กิจกรรม การประเมิน และเครื่องมือสำหรับผู้เรียน">
 <title>Krukan Online | DATA CORE</title>
@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Kanit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>try{var t=localStorage.getItem('kk-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}</script>
-<script>(function(){try{var d=document.documentElement,seen=false;if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;try{seen=sessionStorage.getItem('kk-boot')==='1'}catch(e){}if(seen)return;d.classList.add('boot-on');setTimeout(function(){d.classList.remove('boot-on')},5200)}catch(e){}})();</script>
+<script>(function(){try{var d=document.documentElement,seen=false;if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('boot-on');setTimeout(function(){d.classList.remove('boot-on')},4500)}catch(e){}})();</script>
 <style>
 /* ============================================================
    KRUKAN ONLINE · Home v4 — COMIC STRIKE
@@ -1636,10 +1636,10 @@ html.boot-on .boot.rx{display:block;padding:0;background:#070914;color:#fff;--fc
 @keyframes rxSpin{to{transform:rotate(360deg)}}
 /* แผงเฉียง 7 ร่าง */
 .rx-cols{left:-12vw;right:-12vw;top:-6vh;bottom:-6vh;display:flex;gap:6px;transform:skewX(-11deg);transition:opacity .35s ease,transform .5s cubic-bezier(.6,0,.3,1)}
-.rx-col{position:relative;flex:1 1 0;overflow:hidden;background:#0e1220;outline:2px solid rgba(255,255,255,.08);transform:translateY(112%);transition:transform .55s cubic-bezier(.2,.9,.25,1) calc(var(--i) * 70ms),flex-grow .35s ease}
+.rx-col{position:relative;flex:1 1 0;overflow:hidden;background:#0e1220;outline:2px solid rgba(255,255,255,.08);transform:translateY(112%);transition:transform .4s cubic-bezier(.2,.9,.25,1) calc(var(--i) * 35ms),flex-grow .2s ease}
 .rx-col:nth-child(odd){transform:translateY(-112%)}
 .rx.is-in .rx-col{transform:none}
-.rx-col>i{position:absolute;inset:0 -60%;background:#0e1220 center 32%/auto 92% no-repeat;transform:skewX(11deg) scale(1.02);filter:brightness(.42) saturate(.55);transition:filter .25s ease,transform .4s ease}
+.rx-col>i{position:absolute;inset:0 -60%;background:#0e1220 center 32%/auto 92% no-repeat;transform:skewX(11deg) scale(1.02);filter:brightness(.42) saturate(.55);transition:filter .15s ease,transform .25s ease}
 .rx-col::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,var(--c));opacity:.25;transition:opacity .25s ease,box-shadow .25s ease}
 .rx-col span{position:absolute;left:50%;bottom:12vh;z-index:2;transform:translateX(-50%) skewX(11deg);font:800 clamp(10px,1.5vw,16px)/1 var(--display);letter-spacing:.2em;color:rgba(255,255,255,.55);text-shadow:0 2px 6px #000;white-space:nowrap;transition:color .25s}
 .rx-col.on{flex-grow:1.9}
@@ -1649,7 +1649,7 @@ html.boot-on .boot.rx{display:block;padding:0;background:#070914;color:#fff;--fc
 .rx.is-hen .rx-cols{opacity:0;transform:skewX(-11deg) scale(1.25)}
 /* ร่างแรกเต็มจอ */
 .rx-hero{inset:0;opacity:0;pointer-events:none;transition:opacity .35s ease}
-.rx-img{position:absolute;top:50%;right:-2vw;width:min(108vw,118vh);aspect-ratio:1;transform:translateY(-50%) scale(1.3);background:center/cover no-repeat;-webkit-mask-image:radial-gradient(ellipse 62% 66% at 54% 46%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 62% 66% at 54% 46%,#000 55%,transparent 100%);transition:transform 2.4s cubic-bezier(.15,.85,.2,1)}
+.rx-img{position:absolute;top:50%;right:-2vw;width:min(108vw,118vh);aspect-ratio:1;transform:translateY(-50%) scale(1.3);background:center/cover no-repeat;-webkit-mask-image:radial-gradient(ellipse 62% 66% at 54% 46%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 62% 66% at 54% 46%,#000 55%,transparent 100%);transition:transform 1.4s cubic-bezier(.15,.85,.2,1)}
 .rx-glow{position:absolute;right:8vw;top:30%;width:min(70vw,80vh);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,46,136,.5),transparent 65%);transform:translateY(-30%);mix-blend-mode:screen;animation:rxPulse 1.6s ease-in-out infinite alternate}
 @keyframes rxPulse{from{opacity:.45}to{opacity:.9}}
 .rx.is-hero .rx-hero{opacity:1}
@@ -1658,7 +1658,7 @@ html.boot-on .boot.rx{display:block;padding:0;background:#070914;color:#fff;--fc
 .rx.is-hen .rx-shock{animation:rxShock .8s cubic-bezier(.2,.8,.3,1) forwards}
 @keyframes rxShock{0%{opacity:1;transform:scale(.2)}100%{opacity:0;transform:scale(6)}}
 .rx-sweep{inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.28) 48%,rgba(255,46,136,.25) 52%,transparent 60%);transform:translateX(-100%);pointer-events:none}
-.rx.is-hero .rx-sweep{animation:rxSweep 1.1s ease-out .35s forwards}
+.rx.is-hero .rx-sweep{animation:rxSweep .7s ease-out .15s forwards}
 @keyframes rxSweep{to{transform:translateX(100%)}}
 .rx-flash{inset:0;z-index:9;background:#fff;opacity:0;pointer-events:none}
 .rx.is-hen .rx-flash{animation:rxFlash .6s ease-out .2s}
@@ -1674,7 +1674,7 @@ html.boot-on .boot.rx{display:block;padding:0;background:#070914;color:#fff;--fc
 .rx-tag i{width:9px;height:9px;border-radius:50%;background:var(--fc);box-shadow:0 0 10px var(--fc);animation:rxPulse .5s ease-in-out infinite alternate}
 .rx-tag b{color:var(--fc);transition:color .25s}
 .rx-henshin{left:0;right:0;top:50%;z-index:7;text-align:center;font:900 clamp(56px,15vw,190px)/1 var(--display);font-style:italic;letter-spacing:.02em;color:#fff;-webkit-text-stroke:3px #ff2e88;text-shadow:8px 8px 0 #ff2e88,0 0 40px rgba(255,46,136,.9);opacity:0;transform:translateY(-50%) scale(2.6)}
-.rx.is-hen .rx-henshin{animation:rxHen 1.05s cubic-bezier(.2,.9,.3,1) forwards}
+.rx.is-hen .rx-henshin{animation:rxHen .8s cubic-bezier(.2,.9,.3,1) forwards}
 @keyframes rxHen{0%{opacity:0;transform:translateY(-50%) scale(2.6)}22%{opacity:1;transform:translateY(-50%) scale(1)}70%{opacity:1;transform:translateY(-50%) scale(1.06)}100%{opacity:0;transform:translateY(-50%) scale(1.3)}}
 /* ชื่อเรื่อง */
 .rx-title{left:max(6vw,24px);bottom:calc(7vh + 92px);z-index:5;display:flex;flex-direction:column;align-items:flex-start;line-height:.92}
@@ -1691,7 +1691,7 @@ html.boot-on .boot.rx{display:block;padding:0;background:#070914;color:#fff;--fc
 .rx-bar{height:6px;background:rgba(255,255,255,.15);overflow:hidden;transform:skewX(-20deg)}
 .rx-bar i{display:block;height:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--fc),#ffd400);box-shadow:0 0 12px var(--fc)}
 .rx-skip{display:block;margin-top:8px;text-align:right;font:500 12px/1.3 var(--body);color:rgba(255,255,255,.6)}
-html.boot-on .boot.rx.is-out{opacity:0;transform:scale(1.06)}
+html.boot-on .boot.rx.is-out{opacity:0;transform:scale(1.06);transition:opacity .4s ease,transform .4s ease}
 /* มือถือแนวตั้ง: แผงแคบ 7 แผง, ร่างแรกเต็มกว้างค่อนบน, ชื่อเรื่องล่างกลาง */
 @media (orientation:portrait){
   .rx-cols{left:-30vw;right:-30vw;gap:4px}
@@ -2118,19 +2118,18 @@ setTimeout(()=>{if(!gd.hidden)return;gPlay('hello');say('สวัสดีค�
 const gio=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting&&gd.hidden){const g=GUIDE.find(x=>x[0]===en.target.id);if(g)say(g[4])}}),{rootMargin:'-45% 0px -45% 0px'});
 GUIDE.forEach(g=>{const el=document.getElementById(g[0]);if(el)gio.observe(el)});
 
-/* ฉากโหลด v3 (9 พ.ย. 2569): แผงเฉียง 7 ร่างเลื่อนเข้า › ไฟสแกนไล่ทีละร่าง (ไม่กระพริบ) › HENSHIN! แฟลชครั้งเดียว › ร่างแรกเต็มจอ + ชื่อเรื่อง › จางออก (รวม ~4.5 วิ น้อยกว่าตัวกันค้าง 5.2 วิในส่วนหัว) */
+/* ฉากโหลด v3 (9 พ.ย. 2569): แผงเฉียง 7 ร่างเลื่อนเข้า › ไฟสแกนไล่ทีละร่าง (ไม่กระพริบ) › HENSHIN! แฟลชครั้งเดียว › ร่างแรกเต็มจอ + ชื่อเรื่อง › จางออก · 9 พ.ย. 69 ผู้ใช้เลือก 'ขึ้นทุกครั้ง แต่ใช้เวลาน้อยลง' › เลิกจำใน sessionStorage, รวม ~2.8 วิ (ตัวกันค้างในส่วนหัว 4.5 วิ เผื่อเครื่องช้าที่สคริปต์เริ่มช้า) */
 function runBoot(){
   const root=document.documentElement,boot=$('#boot');
   if(!boot||!root.classList.contains('boot-on'))return;
-  try{sessionStorage.setItem('kk-boot','1')}catch(e){}
   const fill=$('#boot-fill'),pct=$('#boot-pct'),text=$('#boot-text'),form=$('#rx-form'),cols=$('#rx-cols');
   const F=[['BASE','#ff2e88'],['SWORD','#ff8a1e'],['SPEAR','#ffc83d'],['GUN','#22d36b'],['DAGGER','#2f8bff'],['TWIN','#2ee6d6'],['OMNI','#ff4d2e']],imgs=ASSETS.ldforms||[];
   cols.innerHTML=F.map((f,i)=>'<i class="rx-col" style="--c:'+f[1]+';--i:'+i+'"><i'+(imgs[i]?' style="background-image:url('+imgs[i]+')"':'')+'></i><span>'+f[0]+'</span></i>').join('');
   const cl=[...cols.children];if(ASSETS.ldhero)$('#rx-img').style.backgroundImage='url('+ASSETS.ldhero+')';
   const steps=[[0,'กำลังสแกนการ์ดศาสตรา 7 ร่าง'],[.5,'ล็อกเป้า: ร่างแรก BASE FORM'],[.62,'HENSHIN! กำลังแปลงร่าง'],[.8,'CYBER RIDER TECHNO พร้อมลุย!']];
-  const order=[1,2,3,4,5,6,0],T_SCAN=380,STEP=230,T_HEN=2150,T_HERO=2400,DUR=3500;
+  const order=[1,2,3,4,5,6,0],T_SCAN=160,STEP=125,T_HEN=1180,T_HERO=1350,DUR=2050;
   const t0=performance.now();let done=false,lastK=-2,lastS=-1;
-  const finish=()=>{if(done)return;done=true;boot.classList.add('is-out');setTimeout(()=>root.classList.remove('boot-on'),650)};
+  const finish=()=>{if(done)return;done=true;boot.classList.add('is-out');setTimeout(()=>root.classList.remove('boot-on'),450)};
   boot.addEventListener('click',finish);document.addEventListener('keydown',finish,{once:true});
   requestAnimationFrame(()=>boot.classList.add('is-in'));
   const frame=now=>{
@@ -2142,7 +2141,7 @@ function runBoot(){
     if(k!==lastK){lastK=k;cl.forEach(c=>c.classList.remove('on'));if(k>=0){const f=order[k];cl[f].classList.add('on');form.textContent=F[f][0]+' FORM';boot.style.setProperty('--fc',F[f][1])}}
     if(t>=T_HEN&&!boot.classList.contains('is-hen'))boot.classList.add('is-hen');
     if(t>=T_HERO&&!boot.classList.contains('is-hero')){boot.classList.add('is-hero');form.textContent='HENSHIN COMPLETE'}
-    if(p<1)requestAnimationFrame(frame);else setTimeout(finish,450);
+    if(p<1)requestAnimationFrame(frame);else setTimeout(finish,280);
   };
   requestAnimationFrame(frame);
 }
