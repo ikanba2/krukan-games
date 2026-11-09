@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="lite-build" content="d69587e1fe">
+<meta name="lite-build" content="e563e667e3">
 <meta name="theme-color" content="#f3f5fb">
 <meta name="description" content="Krukan Online พื้นที่การเรียนรู้ดิจิทัล บทเรียน กิจกรรม การประเมิน และเครื่องมือสำหรับผู้เรียน">
 <title>Krukan Online | DATA CORE</title>
@@ -1707,6 +1707,21 @@ html.boot-on .boot.rx.is-out{opacity:0;transform:scale(1.06);transition:opacity 
   .rx-c{width:24px;height:24px}
 }
 @media (prefers-reduced-motion:reduce){.rx-speed,.rx-glow,.rx-tag i{animation:none}}
+
+
+/* ===== v8.1 พื้นลายวงจร (9 พ.ย. 2569 ผู้ใช้เลือกแบบ 1 'ลายวงจร' แทนพื้นจุด): เส้นแผงวงจร (SVG เป็น mask ระบายด้วยสีโซน) + แสงชมพู-ฟ้ากวาดไปตามเส้นช้า ๆ (เฉพาะจอกว้าง ไม่ลดการเคลื่อนไหว) ===== */
+:root{--circuit:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 36H60l20 20h44M200 36h-30M100 0v20l16 16h28M100 200v-30l-16-16M24 200v-60l20-20h26M24 0v14M200 150h-50l-20-20v-22M0 150h30M160 200v-24M160 0v10M76 84h10l14 14v18M40 96h-14'/%3E%3Cg fill='%23000'%3E%3Ccircle cx='128' cy='56' r='4'/%3E%3Ccircle cx='166' cy='36' r='4'/%3E%3Ccircle cx='148' cy='36' r='4'/%3E%3Ccircle cx='81' cy='151' r='4'/%3E%3Ccircle cx='74' cy='120' r='4'/%3E%3Ccircle cx='24' cy='18' r='4'/%3E%3Ccircle cx='130' cy='104' r='4'/%3E%3Ccircle cx='34' cy='150' r='4'/%3E%3Ccircle cx='160' cy='172' r='4'/%3E%3Ccircle cx='160' cy='14' r='4'/%3E%3Ccircle cx='100' cy='120' r='4'/%3E%3Ccircle cx='22' cy='96' r='4'/%3E%3C/g%3E%3Crect x='40' y='74' width='36' height='22' rx='3' fill='%23000' fill-opacity='.35'/%3E%3C/svg%3E")}
+@property --cg{syntax:'<percentage>';inherits:false;initial-value:0%}
+.bg{background:none}
+.bg::before,.zone::before{content:'';position:absolute;inset:0;pointer-events:none;-webkit-mask:var(--circuit) 0 0/200px 200px repeat;mask:var(--circuit) 0 0/200px 200px repeat}
+.bg::before{background:color-mix(in srgb,var(--ink) 16%,transparent)}
+.zone{background-image:none}
+.zone::before{z-index:0;background:color-mix(in srgb,var(--k) 42%,transparent)}
+@media (min-width:900px) and (prefers-reduced-motion:no-preference){
+  .bg::before,.zone::before{background-image:linear-gradient(115deg,transparent calc(var(--cg) - 9%),rgba(255,46,136,.95) calc(var(--cg) - 3%),rgba(0,205,184,.95) calc(var(--cg) + 3%),transparent calc(var(--cg) + 9%));animation:circuitGlow 9s linear infinite}
+  .zone:nth-of-type(even)::before{animation-delay:-4.5s}
+}
+@keyframes circuitGlow{from{--cg:-20%}to{--cg:120%}}
 
 
 </style>
