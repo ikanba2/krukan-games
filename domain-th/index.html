@@ -168,7 +168,17 @@ h1,h2,h3,h4{font-family:var(--display);margin:0}
 .vid .vid-btn{position:absolute;inset:0;display:grid;place-items:center;border:0;padding:0;background:none;cursor:pointer}
 .vid .vid-btn img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .vid .vid-play{position:relative;display:grid;place-items:center;width:110px;height:110px;border-radius:50%;background:var(--pink);border:5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);color:#fff;font-size:44px;transition:transform .15s}
-.vid .vid-btn:hover .vid-play,.vid .vid-btn:focus-visible .vid-play{transform:scale(1.08)}
+.vid .vid-play::before,.vid .vid-play::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:4px solid #fff;opacity:0;animation:vring 2.2s ease-out infinite;pointer-events:none}
+.vid .vid-play::after{animation-delay:1.1s}
+@keyframes vring{0%{transform:scale(1);opacity:.85}100%{transform:scale(1.9);opacity:0}}
+.vid .vid-btn::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,21,48,0) 55%,rgba(14,21,48,.55));pointer-events:none;transition:background .2s}
+.vid .vid-hint{position:absolute;left:50%;top:calc(50% + 78px);transform:translateX(-50%);background:var(--ink);color:#fff;font:800 17px var(--body);padding:6px 16px;border-radius:999px;white-space:nowrap;z-index:2;box-shadow:0 0 0 3px var(--yellow)}
+.vid .vid-btn:hover::after{background:rgba(14,21,48,.25)}
+.vid .vid-btn:hover .vid-play,.vid .vid-btn:focus-visible .vid-play{transform:scale(1.12)}
+.vid .vid-play{z-index:2;animation:vbob 1.6s ease-in-out infinite}
+@keyframes vbob{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.vid .vid-btn:hover .vid-play,.vid .vid-btn:focus-visible .vid-play{animation:none}
+@media (prefers-reduced-motion:reduce){.vid .vid-play,.vid .vid-play::before,.vid .vid-play::after{animation:none}}
 .vid .vid-soon{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);background:var(--yellow);border:4px solid var(--ink);padding:6px 16px;font:700 16px var(--body);white-space:nowrap}
 .vid-note{margin-top:14px;font-size:15.5px;color:var(--muted)}
 .ours{margin-top:26px;padding:22px;background:var(--paper);border:4px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}
@@ -472,7 +482,7 @@ h1,h2,h3,h4{font-family:var(--display);margin:0}
   <section class="sec" id="video" aria-labelledby="hv">
     <div class="sh"><div class="no">▶</div><div><h2 id="hv">ดูวิดีโอแนะนำ 4 นาที</h2><p>ครูกานเล่าว่า .th และ .ไทย คืออะไร ต่างจาก .com อย่างไร ใครขอได้ และเว็บของเราได้อะไร ดูจบแล้วไปเล่นเกมรับเกียรติบัตรต่อได้เลย</p></div></div>
     <div class="vid" id="vid" data-yt="9UPIIkblbAk">
-      <button type="button" class="vid-btn" id="vid-btn" aria-label="เล่นวิดีโอแนะนำ รู้จัก .th และ .ไทย"><img alt="" data-slot-img="domain-th-11-video-cover"><span class="vid-play" aria-hidden="true">▶</span></button>
+      <button type="button" class="vid-btn" id="vid-btn" aria-label="เล่นวิดีโอแนะนำ รู้จัก .th และ .ไทย"><img alt="" data-slot-img="domain-th-11-video-cover"><span class="vid-play" aria-hidden="true">▶</span><span class="vid-hint" aria-hidden="true">▶ แตะเพื่อดูวิดีโอ 4:52</span></button>
     </div>
     <p class="vid-note">วิดีโอฝากไว้ที่ YouTube ช่อง ครูการ.ไทย (@krukan-th) · ภาพ เสียงบรรยาย และการตัดต่อใช้ AI ช่วย ครูกานเป็นผู้เขียนบทและตรวจข้อเท็จจริง</p>
   </section>
@@ -681,7 +691,7 @@ fillSlots('');
 /* วิดีโอ YouTube: แสดงปกก่อน กดแล้วค่อยโหลด (หน้าไม่หนัก) ยังไม่มีรหัสวิดีโอ = ป้ายเร็ว ๆ นี้ */
 (function(){const box=$('#vid');if(!box)return;const id=box.dataset.yt,btn=$('#vid-btn'),im=btn.querySelector('img');
  im.src='domain-th/'+im.dataset.slotImg+'.webp';
- if(!id||id.indexOf('__')===0){btn.disabled=true;btn.insertAdjacentHTML('beforeend','<span class="vid-soon">วิดีโอกำลังขึ้น YouTube เร็ว ๆ นี้</span>');return}
+ if(!id||id.indexOf('__')===0){btn.disabled=true;btn.querySelector('.vid-hint').remove();btn.insertAdjacentHTML('beforeend','<span class="vid-soon">วิดีโอกำลังขึ้น YouTube เร็ว ๆ นี้</span>');return}
  btn.addEventListener('click',()=>{box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?autoplay=1&rel=0" title="วิดีโอแนะนำ รู้จัก .th และ .ไทย" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'})})();
 /* แถบที่อยู่เว็บ */
 const EX=[
