@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="lite-build" content="983b6caa0c">
+<meta name="lite-build" content="bfc933808f">
 <meta name="theme-color" content="#f3f5fb">
 <meta name="description" content="Krukan Online พื้นที่การเรียนรู้ดิจิทัล บทเรียน กิจกรรม การประเมิน และเครื่องมือสำหรับผู้เรียน">
 <title>Krukan Online | DATA CORE</title>
@@ -1776,6 +1776,9 @@ html.boot-on .boot.bs{justify-content:flex-end;padding-bottom:max(48px,9vh)}
   .hlogo{width:104px;filter:drop-shadow(4px 4px 0 var(--line))}
 }
 @media(prefers-reduced-motion:reduce){.hlogo{transition:none}.hlogo:hover{transform:rotate(-4deg)}}
+/* 15 พ.ย. 2569: โซน .th บนจอคอม ภาพ 16:9 ที่ถูกยืดตามความสูงแถวกริดล้นช่องไปทับการ์ดอธิบาย (ไอคอนและตัวหน้าหาย) › บังคับกว้างตามคอลัมน์ ความสูงตามอัตราส่วน วางกลางแนวตั้ง */
+.dom-art.pic{min-width:0;width:100%;align-self:center}
+@media(min-width:861px){.domain{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-items:center}}
 
 
 .bs-bg{background-image:url(home-assets/1962edd25b89.webp)}@media(orientation:portrait){.bs-bg{background-image:url(home-assets/b12d57fd9f5b.webp)}}
