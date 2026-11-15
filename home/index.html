@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="lite-build" content="7df2acf2a6">
+<meta name="lite-build" content="859ddcdbd4">
 <meta name="theme-color" content="#f3f5fb">
 <meta name="description" content="Krukan Online พื้นที่การเรียนรู้ดิจิทัล บทเรียน กิจกรรม การประเมิน และเครื่องมือสำหรับผู้เรียน">
 <title>Krukan Online | DATA CORE</title>
@@ -1810,6 +1810,28 @@ html.boot-on .boot.bs{justify-content:flex-end;padding-bottom:max(48px,9vh)}
   .dom-art.pic .dom-go{right:8px;bottom:8px;padding:5px 9px;font-size:13px}
 }
 @media(prefers-reduced-motion:reduce){.dgo-main::after{display:none}.dgo-main .ar,.dgo-main .tag,.dom-art.pic .dom-go{animation:none}}
+/* 15 พ.ย. 2569 โซน .th กระชับ: ฝั่งขวาเตี้ยลงให้สูงเท่าภาพ (จอ >=1180px ภาพยืดตามความสูงฝั่งขวา ใช้ object-fit:cover) · จอแคบกว่านั้นภาพคง 16:9 วางกลางแนวตั้ง */
+@media(min-width:561px){
+  .dpts{gap:10px}
+  .dpts li{padding:8px 12px;gap:12px}
+  .dpts li div{font-size:13.5px;line-height:1.4;text-wrap:pretty}
+  .dpts i{width:38px;height:38px;font-size:18px}
+  .dpts b{font-size:16px}
+  .dpts small{font-size:13.5px;line-height:1.4}
+  .dright .dpts{margin-bottom:22px}
+  .dgo{gap:10px}
+  .dgo .dn-go{min-height:38px}
+  .dgo-main{padding:10px 14px}
+  .dgo-main .ic{width:44px;height:44px;font-size:21px}
+  .dgo-main .tx small{font-size:13px;margin-bottom:1px}
+  .dgo-main .tx b{font-size:clamp(18px,1.7vw,22px)}
+  .dgo-main .ar{width:40px;height:40px;font-size:28px}
+}
+@media(min-width:1180px){
+  .domain{align-items:stretch}
+  .dom-art.pic{aspect-ratio:auto;align-self:stretch}
+  .dright{display:flex;flex-direction:column;justify-content:space-between}
+}
 
 
 .bs-bg{background-image:url(home-assets/1962edd25b89.webp)}@media(orientation:portrait){.bs-bg{background-image:url(home-assets/b12d57fd9f5b.webp)}}
