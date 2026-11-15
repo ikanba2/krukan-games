@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="lite-build" content="bfc933808f">
+<meta name="lite-build" content="7df2acf2a6">
 <meta name="theme-color" content="#f3f5fb">
 <meta name="description" content="Krukan Online พื้นที่การเรียนรู้ดิจิทัล บทเรียน กิจกรรม การประเมิน และเครื่องมือสำหรับผู้เรียน">
 <title>Krukan Online | DATA CORE</title>
@@ -1779,6 +1779,37 @@ html.boot-on .boot.bs{justify-content:flex-end;padding-bottom:max(48px,9vh)}
 /* 15 พ.ย. 2569: โซน .th บนจอคอม ภาพ 16:9 ที่ถูกยืดตามความสูงแถวกริดล้นช่องไปทับการ์ดอธิบาย (ไอคอนและตัวหน้าหาย) › บังคับกว้างตามคอลัมน์ ความสูงตามอัตราส่วน วางกลางแนวตั้ง */
 .dom-art.pic{min-width:0;width:100%;align-self:center}
 @media(min-width:861px){.domain{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-items:center}}
+/* 15 พ.ย. 2569 โซน .th: ปุ่ม 'รู้จัก .th และ .ไทย เพิ่มเติม' เป็นตัวเด่นของโซน (ใหญ่ มีป้าย 'คลิกที่นี่' ลูกศรขยับ วงเรืองขยาย) ปุ่มที่สองเป็นลิงก์รอง ภาพมีป้าย 'คลิกอ่านเรื่องเต็ม' */
+.dright{min-width:0}
+.dright .dpts{margin-bottom:26px}
+.dgo{display:grid;gap:14px}
+.dgo-main{position:relative;display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--blue);color:#fff;text-decoration:none;border:4px solid var(--line);border-radius:6px;box-shadow:8px 8px 0 var(--line);transition:transform .15s,box-shadow .15s}
+.dgo-main:hover{transform:translate(-2px,-2px) rotate(-1deg);box-shadow:11px 11px 0 var(--line)}
+.dgo-main:active{transform:translate(5px,5px);box-shadow:1px 1px 0 var(--line)}
+.dgo-main::after{content:'';position:absolute;inset:-4px;border:4px solid var(--blue);border-radius:8px;opacity:0;pointer-events:none;animation:dgoring 2.2s ease-out infinite}
+.dgo-main .ic{flex:none;display:grid;place-items:center;width:52px;height:52px;background:#fff;border:3px solid var(--line);border-radius:50%;font-style:normal;font-size:25px}
+.dgo-main .tx{flex:1;min-width:0}
+.dgo-main .tx small{display:block;margin-bottom:3px;font:700 14px/1.3 var(--body);letter-spacing:0;opacity:.95}
+.dgo-main .tx b{display:block;font:800 clamp(19px,1.9vw,25px)/1.2 var(--display)}
+.dgo-main .ar{flex:none;display:grid;place-items:center;width:46px;height:46px;background:var(--yellow);color:#0e1530;border:3px solid var(--line);border-radius:50%;font:800 32px/1 var(--display);font-style:normal;padding-bottom:4px;animation:dgonudge 1.2s ease-in-out infinite}
+.dgo-main .tag{position:absolute;right:14px;top:-18px;padding:5px 11px;background:var(--yellow);color:#0e1530;border:3px solid var(--line);font:800 14.5px/1 var(--display);transform:rotate(3deg);animation:dgotag 1.5s ease-in-out infinite}
+.dgo .dn-go{margin:0;justify-self:start}
+.dom-art.pic .dom-go{position:absolute;right:12px;bottom:12px;padding:6px 12px;background:var(--yellow);color:#0e1530;border:3px solid var(--line);font:800 15px/1 var(--display);transform:rotate(-2deg);animation:dgotag2 1.6s ease-in-out infinite}
+@keyframes dgonudge{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+@keyframes dgotag{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(3deg) translateY(-4px)}}
+@keyframes dgotag2{0%,100%{transform:rotate(-2deg) translateY(0)}50%{transform:rotate(-2deg) translateY(-3px)}}
+@keyframes dgoring{0%{opacity:.75;transform:scale(1)}100%{opacity:0;transform:scale(1.06,1.3)}}
+@media(max-width:560px){
+  .dright .dpts{margin-bottom:24px}
+  .dgo-main{gap:10px;padding:12px;box-shadow:5px 5px 0 var(--line)}
+  .dgo-main .ic{width:42px;height:42px;font-size:20px}
+  .dgo-main .tx small{font-size:12.5px}
+  .dgo-main .tx b{font-size:18px}
+  .dgo-main .ar{width:38px;height:38px;font-size:27px}
+  .dgo .dn-go{justify-self:stretch;white-space:normal;height:auto;min-height:42px;padding:8px 12px;text-align:center}
+  .dom-art.pic .dom-go{right:8px;bottom:8px;padding:5px 9px;font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){.dgo-main::after{display:none}.dgo-main .ar,.dgo-main .tag,.dom-art.pic .dom-go{animation:none}}
 
 
 .bs-bg{background-image:url(home-assets/1962edd25b89.webp)}@media(orientation:portrait){.bs-bg{background-image:url(home-assets/b12d57fd9f5b.webp)}}
@@ -1900,7 +1931,7 @@ html.boot-on .boot.bs{justify-content:flex-end;padding-bottom:max(48px,9vh)}
     <span class="ztag" aria-hidden="true">ZONE 06 · MISSION .TH</span>
     <div class="wrap">
     <header class="sh"><img class="masc" data-asset="poseDomain" alt="" aria-hidden="true"><div><span class="chap"><i>.TH</i>MISSION</span><h2>รู้จัก<em>.th และ .ไทย</em></h2><p>ชื่อโดเมนของประเทศไทย น่าเชื่อถือ ตรวจสอบได้ และเว็บนี้ก็ใช้ .in.th</p></div></header>
-    <div class="domain"><a class="dom-art pic" href="https://www.krukan.in.th/domain-th" target="_blank" rel="noopener noreferrer" aria-label="รู้จัก .th และ .ไทย"><img class="dom-pic" src="https://ikanba2.github.io/krukan-games/domain-th/domain-th/domain-th-01-hero.webp" alt="" loading="lazy" decoding="async"><small class="dom-tag">KRUKAN.IN.TH · www.ครูการ.ไทย</small></a><div><ul class="dpts" id="dpts"></ul><a class="b3d blue" href="https://www.krukan.in.th/domain-th" target="_blank" rel="noopener noreferrer">🌐 รู้จัก .th และ .ไทย เพิ่มเติม</a><a class="b3d gold dn-go" href="https://www.ครูการ.ไทย" target="_blank" rel="noopener noreferrer"><i class="flag" aria-hidden="true"></i> เว็บนี้ใช้ชื่อไทยได้: <span class="nw">www.ครูการ.ไทย</span></a></div></div>
+    <div class="domain"><a class="dom-art pic" href="https://www.krukan.in.th/domain-th" target="_blank" rel="noopener noreferrer" aria-label="รู้จัก .th และ .ไทย"><img class="dom-pic" src="https://ikanba2.github.io/krukan-games/domain-th/domain-th/domain-th-01-hero.webp" alt="" loading="lazy" decoding="async"><small class="dom-tag">KRUKAN.IN.TH · www.ครูการ.ไทย</small><span class="dom-go" aria-hidden="true">คลิกอ่านเรื่องเต็ม ›</span></a><div class="dright"><ul class="dpts" id="dpts"></ul><div class="dgo"><a class="dgo-main" href="https://www.krukan.in.th/domain-th" target="_blank" rel="noopener noreferrer"><span class="tag" aria-hidden="true">👆 คลิกที่นี่</span><i class="ic" aria-hidden="true">🌐</i><span class="tx"><small>อยากรู้ว่าทำไมต้อง .th และ .ไทย?</small><b>รู้จัก .th และ .ไทย เพิ่มเติม</b></span><i class="ar" aria-hidden="true">›</i></a><a class="dn-go b3d gold sm" href="https://www.ครูการ.ไทย" target="_blank" rel="noopener noreferrer"><i class="flag" aria-hidden="true"></i> เว็บนี้ใช้ชื่อไทยได้: <span class="nw">www.ครูการ.ไทย</span></a></div></div></div>
     </div>
   </section>
 
