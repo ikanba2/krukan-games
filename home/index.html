@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="lite-build" content="62418163d9">
+<meta name="lite-build" content="b932e9a9a6">
 <meta name="theme-color" content="#f3f5fb">
 <meta name="description" content="Krukan Online พื้นที่การเรียนรู้ดิจิทัล บทเรียน กิจกรรม การประเมิน และเครื่องมือสำหรับผู้เรียน">
 <title>Krukan Online | DATA CORE</title>
@@ -1833,6 +1833,38 @@ html.boot-on .boot.bs{justify-content:flex-end;padding-bottom:max(48px,9vh)}
   .dright{display:flex;flex-direction:column;justify-content:space-between}
 }
 
+/* ===== v8.2 (16 พ.ย. 2569): กระชับโซนเกม — (1) แถบกรองหมวดพอใน 1 บรรทัด (2) ป้ายหมวดย้ายมาอยู่ 'ด้านหน้า' (แถบซ้าย) ของชั้นเกม ไม่กินความสูงด้านบนอีก ===== */
+/* แถบกรอง: ตัวเลขความกว้างจริงของแถว 8 ปุ่ม = มีไอคอน 942px · ไม่มีไอคอน 670px (ฟอนต์ 14 / padding 8) — ช่องค้นหา 210–230px วางข้างกันได้เมื่อกว้างพอ ไม่งั้นลงบรรทัดใหม่ */
+@media(min-width:561px){
+  .gtools .seg{flex-wrap:nowrap;gap:8px}
+  .gtools .seg button{flex:1 1 auto;min-width:max-content;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 8px;font-size:14px;white-space:nowrap;box-shadow:3px 3px 0 var(--line)}
+  .gtools .seg button:hover{box-shadow:5px 5px 0 var(--line)}
+  .gtools .seg .ge{display:none;font-style:normal;font-size:16px;line-height:1}
+  .gsearch{flex:0 1 210px;min-width:0;margin-bottom:18px}  /* เว้นล่างให้พ้นขอบชั้นเกม (บรรทัดเดียวกับแถบกรองเมื่อพอที่ ไม่งั้นลงบรรทัดใหม่) */
+  .gsearch input{width:0}
+}
+@media(min-width:1226px){
+  .gtools .seg button{padding:9px 10px;font-size:14.5px}
+  .gtools .seg .ge{display:inline}
+  .gsearch{flex-basis:230px}
+}
+@media(min-width:561px) and (max-width:700px){.gtools .seg{overflow-x:auto;padding:0 5px 6px 0;scrollbar-width:none}.gtools .seg button{flex:none}}
+@media(max-width:560px){.seg .ge{font-style:normal}}
+/* ชั้นเกม: ป้ายหมวด = แถบซ้าย (จอ ≥861px) · จอเล็กกว่านั้นยังเป็นแถบบนแบบเดิม */
+@media(min-width:861px){
+  .shelf{display:grid;grid-template-columns:128px minmax(0,1fr)}
+  .shelf-h{grid-column:1;grid-row:1;flex-direction:column;align-items:center;justify-content:flex-start;flex-wrap:nowrap;gap:9px;padding:16px 8px 14px;text-align:center;border-bottom:0;border-right:4px solid var(--line)}
+  .shelf-h .em{width:46px;height:46px;font-size:22px}
+  .shelf-h h3{font-size:19px;line-height:1.2;text-wrap:pretty}
+  .shelf-h h3 small{margin-top:5px;font-size:9.5px;letter-spacing:.08em}
+  .shelf-h .cnt{margin:0}
+  .shelf-h .b3d{width:100%;justify-content:center;padding:0 6px;min-height:34px;font-size:12.5px;gap:4px}
+  .shelf .rowwrap{grid-column:2;grid-row:1;min-width:0}
+  .shelf .peek{grid-column:1/-1;grid-row:2}
+  .shelf .games{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(min-width:1100px){.shelf .games{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
 
 .bs-bg{background-image:url(home-assets/1962edd25b89.webp)}@media(orientation:portrait){.bs-bg{background-image:url(home-assets/b12d57fd9f5b.webp)}}
 </style>
@@ -1918,7 +1950,7 @@ html.boot-on .boot.bs{justify-content:flex-end;padding-bottom:max(48px,9vh)}
     <span class="ztag" aria-hidden="true">ZONE 02 · GAME LIBRARY</span>
     <div class="wrap">
     <header class="sh"><img class="masc" data-asset="poseGames" alt="" aria-hidden="true"><div><span class="chap"><i>02</i>GAME LIBRARY</span><h2>คลัง<em>เกมการเรียนรู้</em></h2><p>กิจกรรมเสริมแบบ Game-based และ Interactive Learning</p></div></header>
-    <div class="gtools"><div class="seg" role="group" aria-label="กรองเกมตามทักษะ" id="game-filter"></div><label class="gsearch"><span aria-hidden="true">🔎</span><input id="gq" type="search" placeholder="ค้นหาเกม เช่น คณิต พิมพ์ รหัส" aria-label="ค้นหาเกม" autocomplete="off"></label></div>
+    <div class="gtools"><div class="seg" role="group" aria-label="กรองเกมตามทักษะ" id="game-filter"></div><label class="gsearch"><span aria-hidden="true">🔎</span><input id="gq" type="search" placeholder="ค้นหาเกม เช่น คณิต" aria-label="ค้นหาเกม" autocomplete="off"></label></div>
     <div class="shelves" id="shelves"></div>
     <div class="more"><button class="b3d ghost" id="game-more" type="button" hidden></button></div>
     </div>
@@ -2127,7 +2159,7 @@ function nudgeFirst(){if(nudged||reduce.matches)return;const el=$('.shelf .games
 function watchY(wrap,el){if(!wrap||!el)return;const upd=()=>wrap.classList.toggle('can-d',el.scrollHeight-el.clientHeight>8&&el.scrollTop+el.clientHeight<el.scrollHeight-8);el.addEventListener('scroll',upd,{passive:true});upd();addEventListener('resize',upd)}
 addEventListener('resize',()=>rowUpd.forEach(f=>f()));
 const used=new Set(DATA.activities.map(grpOf));
-seg($('#game-filter'),[['all','🎮 ทั้งหมด'],...GROUPS.filter(g=>used.has(g[0])).map(g=>[g[0],g[1]+' '+(GROUP_LABELS[g[0]]||g[0])])],f=>{gF=f;renderGames()});
+seg($('#game-filter'),[['all','<i class="ge" aria-hidden="true">🎮</i><span>ทั้งหมด</span>'],...GROUPS.filter(g=>used.has(g[0])).map(g=>[g[0],'<i class="ge" aria-hidden="true">'+g[1]+'</i><span>'+esc(GROUP_LABELS[g[0]]||g[0])+'</span>'])],f=>{gF=f;renderGames()});
 $('#shelves').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('.shelf-h[data-shelf]')){e.preventDefault();e.target.click()}});
 $('#shelves').addEventListener('click',e=>{const b=e.target.closest('[data-shelf]');if(!b)return;const k=b.dataset.shelf;shelfOpen.has(k)?shelfOpen.delete(k):shelfOpen.add(k);renderGames();if(!shelfOpen.has(k)){const el=document.getElementById('shelf-'+k);if(el)el.scrollIntoView({block:'start',behavior:reduce.matches?'auto':'smooth'})}});
 $('#gq').addEventListener('input',e=>{gQ=e.target.value;renderGames()});
