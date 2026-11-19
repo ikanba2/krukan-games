@@ -957,7 +957,27 @@ function finish(){
   $('#again').onclick=intro;
   $('#c-print').onclick=()=>{
     if(!$('#c-name').value.trim()){$('#c-name').focus();toast('พิมพ์ชื่อก่อนนะ แล้วค่อยกดพิมพ์');return}
-    $('#cert-print').replaceChildren(buildCert(info()));
+    const cert=buildCert(info());
+    /* ฝังใน Google Sites: กรอบของ Sites ไม่มีสิทธิ์ allow-modals ทำให้ window.print() เงียบหายไม่ทำอะไร (ผู้ใช้แจ้ง 19 พ.ย. 2569)
+       แก้: เปิดแท็บใหม่ (กรอบมี allow-popups-to-escape-sandbox จึงหลุดข้อจำกัด) ใส่เกียรติบัตรกับสไตล์ของหน้านี้ลงไป แล้วสั่งพิมพ์ที่แท็บนั้น */
+    let embedded=false;try{embedded=window.self!==window.top}catch(e){embedded=true}
+    if(embedded){
+      const w=window.open('','_blank');
+      if(w){
+        const css=[...document.querySelectorAll('style,link[rel=stylesheet]')].map(n=>n.outerHTML).join('');
+        w.document.open();
+        w.document.write('<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>เกียรติบัตร .th</title>'+css+'<style>html,body{margin:0;background:#fff}body{display:block;min-height:0}.noprint-tip{font:600 16px Kanit,sans-serif;text-align:center;padding:10px;background:#fff4c2;color:#0e1530}@media print{.noprint-tip{display:none}}#cert-print{display:block!important;width:210mm;height:297mm;overflow:hidden;margin:0 auto}#cert-print .cert{transform:none;width:210mm;height:297mm;box-sizing:border-box}</style></head><body class="printing"><div class="noprint-tip">กำลังเปิดหน้าต่างพิมพ์ ถ้าไม่ขึ้น ให้กด Ctrl+P (ตั้ง A4 ขนาดจริง และเปิดกราฟิกพื้นหลัง)</div><div id="cert-print"></div></body></html>');
+        w.document.close();
+        w.document.getElementById('cert-print').append(w.document.importNode(cert,true));
+        const go=()=>{try{w.focus();w.print()}catch(e){}};
+        const ready=w.document.fonts&&w.document.fonts.ready?w.document.fonts.ready:Promise.resolve();
+        ready.then(()=>setTimeout(go,500),()=>setTimeout(go,900));
+        return;
+      }
+      toast('เบราว์เซอร์บล็อกหน้าต่างใหม่ กดอนุญาตป๊อปอัปแล้วลองอีกครั้ง หรือเปิดหน้านี้ในแท็บใหม่');
+      return;
+    }
+    $('#cert-print').replaceChildren(cert);
     document.body.classList.add('printing');
     try{window.print()}catch(e){toast('เครื่องนี้พิมพ์จากหน้านี้ไม่ได้ ลองเปิดในแท็บใหม่')}
     setTimeout(()=>document.body.classList.remove('printing'),1500);
