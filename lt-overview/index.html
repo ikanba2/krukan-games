@@ -614,7 +614,7 @@ $('#upd').textContent=D.updated||'';
 const soon=()=>'';   /* 22 พ.ย. 2569: ไม่แสดงกล่อง COMING SOON แล้ว ช่องที่ไม่มีข้อมูลจริงจะไม่แสดง */
 const sec=(no,h,p,body,crit)=>`<section class="sec"><div class="sh reveal"><span class="no">${no}</span><div><h2>${h}${crit?`<span class="ck">เกณฑ์ ${crit}</span>`:''}</h2>${p?`<p>${p}</p>`:''}</div></div>${body}</section>`;
 const list=a=>`<ul class="ticks">${a.map(x=>`<li>${hl(x)}</li>`).join('')}</ul>`;
-const hl=x=>esc(x).replace(/(?<![฀-๿.:\d\w–-])(\d[\d,]*(?:\.\d+)?(?:\s?%)?)(?!\s?(?:ก\.ย|ต\.ค|พ\.ย|ธ\.ค|ม\.ค|ก\.พ|มี\.ค|เม\.ย|พ\.ค|มิ\.ย|ก\.ค|ส\.ค|พฤศจิกายน|ตุลาคม|กันยายน|:\d))/g,(m,n)=>/^25\d\d$/.test(n)?n:`<b class="hn">${n}</b>`);
+const hl=x=>esc(x).replace(/(^|[^฀-๿.:\d\w–-])(\d[\d,]*(?:\.\d+)?(?:\s?%)?)(?!\s?(?:ก\.ย|ต\.ค|พ\.ย|ธ\.ค|ม\.ค|ก\.พ|มี\.ค|เม\.ย|พ\.ค|มิ\.ย|ก\.ค|ส\.ค|พฤศจิกายน|ตุลาคม|กันยายน|:\d))/g,(m,p,n)=>p+(/^25\d\d$/.test(n)?n:`<b class="hn">${n}</b>`));
 const tip=(who,t)=>`<div class="tip reveal"><img src="${who==='akari'?IMG.akari:IMG.techno}" alt="" aria-hidden="true"><p>${t}</p></div>`;
 const pic=(src,alt)=>src?`<img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" referrerpolicy="no-referrer">`:'';
 function hero(title,en,lead,crits){const hs=(D.hero_stats||{})[PAGE]||[],HIC={hub:['📈','🎒','📝'],mission:['📉','📏','🗓️'],route:['🪜','📶','🔁'],play:['⏰','📚','📝'],proof:['👀','🎮','📝'],result:['📉','📈','⭐']}[PAGE]||[];
